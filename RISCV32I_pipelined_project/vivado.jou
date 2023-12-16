@@ -27,3 +27,5 @@ add_files {{C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/Un
 update_compile_order -fileset sources_1
 current_project RISCV32I_pipelined_project(2)
 current_project RISCV32I_pipelined_project
+current_project RISCV32I_pipelined_project(2)
+close_project
