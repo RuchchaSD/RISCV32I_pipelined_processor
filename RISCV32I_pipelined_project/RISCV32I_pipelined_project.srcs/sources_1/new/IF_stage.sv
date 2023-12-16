@@ -6,45 +6,45 @@ module IF_stage#(
     input clk,
     input logic rst,
     
-    //inputs from mem/wb
+    //inputs from id
     input logic [1:0] pcSel,
-    input logic  [DATA_WIDTH-1:0] branchAddress,
+    input logic  [DATA_WIDTH-1:0] jmpAddress,
     
 //outputs
     //outputs to if/id
-    output logic [DATA_WIDTH-1:0] instruction,
-    output logic [DATA_WIDTH-1:0] nextPC,
-    output logic [DATA_WIDTH-1:0] PC
+    output logic [DATA_WIDTH-1:0] instruction_in_if_id,
+    output logic [DATA_WIDTH-1:0] PC_in_if_id,
+    output logic [DATA_WIDTH-1:0] PC4_in_if_id
     
     //outputs to otherplaces
 );
         
     //initiations
-    Instruction_memory instruction_memory_inst(
+    instruction_in_if_id_memory instruction_in_if_id_memory_inst(
         .clk(clk),
         .rst(rst),
-        .address(PC),
-        .instruction(instruction)
+        .address(PC_in_if_id),
+        .instruction_in_if_id(instruction_in_if_id)
         );
     
     
     //combinational blocks    
     always_comb begin 
-        nextPC = PC + 4;
+        PC4_in_if_id = PC_in_if_id + 4;
     end
     
     //sequential
     always_ff @(negedge clk or posedge rst) begin
         if(rst) begin
-            PC <= 0;
+            PC_in_if_id <= 0;
         end
         else begin
             if(pcSel == 2'b01)
-                PC <= branchAddress;
+                PC_in_if_id <= jmpAddress;
             else if(pcSel == 2'b10)
-                PC <= PC;
+                PC_in_if_id <= PC_in_if_id;
             else 
-                PC <= nextPC;
+                PC_in_if_id <= PC4_in_if_id;
         end
     end
 endmodule

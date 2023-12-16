@@ -14,10 +14,10 @@ module EX_stage#(
     input logic [1:0]           PCSrc,
     input logic [1:0]           ALUSrc1,
     input logic [1:0]           ALUSrc2,
-    input logic [3:0]           alu_cc, //not sure whether this is input or output
     input logic [1:0]           ALUOp,
     input logic [6:0]           Func7,
     input logic [2:0]           Func3,
+    output logic [3:0]           alu_cc, //not sure whether this is input or output
     output logic [width - 1:0]  TempALU_Opearand_1 ,
     output logic [width - 1:0]  TempALU_Opearand_2, //dataMWrite_in_ex_mem in EXE-MEM latch
     output logic [width - 1:0]  ALU_Operand_1,
