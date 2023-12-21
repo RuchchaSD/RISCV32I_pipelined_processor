@@ -69,4 +69,3 @@ module EX_stage#(
 
 endmodule
 
-endmodule
