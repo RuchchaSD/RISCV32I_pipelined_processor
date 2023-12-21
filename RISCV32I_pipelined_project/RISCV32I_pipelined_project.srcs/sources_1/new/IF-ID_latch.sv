@@ -10,7 +10,7 @@ module if_id_latch#(
         //ID stage
         input logic [WIDTH-1:0] pc_in_if_id,
         input logic [WIDTH-1:0] pc4_in_if_id,
-        input logic [WIDTH:0] instruction_in_if_id,
+        input logic [WIDTH-1 :0] instruction_in_if_id,
 
 
 

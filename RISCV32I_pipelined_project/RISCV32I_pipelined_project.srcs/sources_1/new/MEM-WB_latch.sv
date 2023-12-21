@@ -14,7 +14,7 @@ module mem_wb_latch#(
     //INPUT data
         //WB_data
         input logic [DATA_WIDTH-1:0]  memOut_in_mem_wb,
-        input logic [DATA_WIDTH-1:0]  writeData_in_mem_wb      
+        input logic [DATA_WIDTH-1:0]  writeData_in_mem_wb,      
 
 
 //OUTPUT 

@@ -29,7 +29,7 @@ module ID_stage(
         //IF stage
         input [31:0] PC_out_if_id,
         input [31:0] PC4_out_if_id,
-        input [31:0] instruction_out_if_id,
+        input [31:0] instruction_out_if_id,//
 
         //EX stage
         input logic [4:0] writeReg_out_id_ex,
@@ -57,7 +57,7 @@ module ID_stage(
         output logic flush_id_ex,
         output logic ALUSrc1_in_id_ex,
         output logic ALUSrc2_in_id_ex,
-        output logic ALUOp_in_id_ex,
+        output logic [3:0] ALUOp_in_id_ex,
 
 
 

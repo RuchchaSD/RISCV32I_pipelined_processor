@@ -1,7 +1,3 @@
-`timescale 1ns / 1ps
-module EX_stage(
-
-    );`timescale 1ns / 1ps
 module EX_stage#( 
     parameter width = 32
 )(  
