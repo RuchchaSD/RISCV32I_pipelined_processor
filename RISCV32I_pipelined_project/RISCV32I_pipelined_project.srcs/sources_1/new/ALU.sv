@@ -30,7 +30,7 @@ module ALU(
         ALUResult = 'd0;
 
         case(ALU_control)
-        4'b0000:ALUResult = SrcA & SrcB; // AND
+        4'b1111:ALUResult = SrcA & SrcB; // AND
         4'b0001:ALUResult = SrcA | SrcB;//OR
         4'b0011:ALUResult = SrcA ^ SrcB;//XOR
         4'b0010:ALUResult = SrcA + SrcB;//ADD
