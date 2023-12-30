@@ -5,6 +5,7 @@ module ex_mem_latch#(
         input logic clk_ex_mem,
         input logic rst_ex_mem,
         input logic flush_ex_mem,
+        input logic stall_ex_mem,
 //INPUT
     //INPUT control signals
         //MEM_control_signals
@@ -17,7 +18,7 @@ module ex_mem_latch#(
         input logic [ADDRESS_LENGTH - 1:0] aluOut_in_ex_mem,
         input logic [ADDRESS_LENGTH - 1:0] dataMWrite_in_ex_mem,
         //WB_data       
-        input logic [ADDRESS_LENGTH - 1:0] dataRegWrite_in_ex_mem,
+        input logic [4:0] dataRegWrite_in_ex_mem,
 
 //OUTPUT 
      //OUTPUT control signals
@@ -31,7 +32,7 @@ module ex_mem_latch#(
         input reg [ADDRESS_LENGTH - 1:0] aluOut_out_ex_mem,
         input reg [ADDRESS_LENGTH - 1:0] dataMWrite_out_ex_mem,
         //WB_data       
-        input reg [ADDRESS_LENGTH - 1:0] dataRegWrite_out_ex_mem
+        input reg [4:0] dataRegWrite_out_ex_mem
         
     );
     
@@ -55,7 +56,7 @@ module ex_mem_latch#(
          dataMWrite_out_ex_mem <= dataMWrite_out_ex_mem;
          dataRegWrite_out_ex_mem <= dataRegWrite_out_ex_mem;
     end
-    else begin
+    else if (!stall_ex_mem) begin
         // Normal operation: Transfer input to output
         controlMRead_out_ex_mem <= controlMRead_in_ex_mem;
         controlMWrite_out_ex_mem <= controlMWrite_in_ex_mem;
@@ -64,6 +65,7 @@ module ex_mem_latch#(
         dataMWrite_out_ex_mem <= dataMWrite_in_ex_mem;
         dataRegWrite_out_ex_mem <= dataRegWrite_in_ex_mem;
     end
+    //If stall, do nothing
 end
 
     

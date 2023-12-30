@@ -7,25 +7,28 @@ module EX_stage#(
     input logic [width - 1:0]   ID_EX_ReadData2,
     input logic [width - 1:0]   ID_EX_PC,
     input logic [width - 1:0]   ID_EX_Immediate,
-    input logic [1:0]           PCSrc,
+//    input logic [1:0]           PCSrc,
     input logic [1:0]           ALUSrc1,
     input logic [1:0]           ALUSrc2,
     input logic [1:0]           ALUOp,
     input logic [6:0]           Func7,
     input logic [2:0]           Func3,
-    output logic [3:0]           alu_cc, //not sure whether this is input or output
-    output logic [width - 1:0]  TempALU_Opearand_1 ,
-    output logic [width - 1:0]  TempALU_Opearand_2, //dataMWrite_in_ex_mem in EXE-MEM latch
-    output logic [width - 1:0]  ALU_Operand_1,
-    output logic [width - 1:0]  ALU_Operand_2,
+    input logic [4:0]           readReg1_out_id_ex,
+    input logic [4:0]           readReg2_out_id_ex,
+    input logic [4:0]           writeReg_out_ex_mem,
+    input logic [4:0]           writeReg_out_mem_wb,
     output logic [width - 1:0]  Result  //aluOut_in_ex_mem in EXE-MEM latch
     );
+    
+    logic [1:0] ExMUX3_sel,ExMUX4_sel;
+    logic [3:0] alu_cc;
+    logic [width - 1:0]  TempALU_Opearand_1 ,TempALU_Opearand_2,ALU_Operand_1,ALU_Operand_2;
     
    MUX31 ExMUX3 (
         .d0(ID_EX_ReadData1), //data from register rd1
         .d1(WB_Data), //output from wb
         .d2(EX_MEM_Data), //ALU result
-        .s(PCSrc), //Forwarding unit control signal 1
+        .s(ExMUX3_sel), //Forwarding unit control signal 1
         .y(TempALU_Opearand_1) // Output input 1 to ALUSrc1MUX
     ); 
     
@@ -33,7 +36,7 @@ module EX_stage#(
         .d0(ID_EX_ReadData2), //rd2
         .d1(WB_Data), //output from the wb
         .d2(EX_MEM_Data), //ALU result
-        .s(PCSrc), //Forwarding unit control signal 2
+        .s(ExMUX4_sel), //Forwarding unit control signal 2
         .y(TempALU_Opearand_2) // Output input  1 to ALUSrc2MUX
     );
     
@@ -66,6 +69,10 @@ module EX_stage#(
         .Funct3(Func3), //same as above?
         .ALU_control(alu_cc) //ouput signal to alu
    );
+   
+   ALU_data_forward(regWrite_out_ex_mem,regWrite_out_mem_wb,writeReg_out_ex_mem,writeReg_out_mem_wb,
+                    readReg1_out_id_ex,readReg2_out_id_ex,
+                    ExMUX3_sel,ExMUX4_sel);
 
 endmodule
 
