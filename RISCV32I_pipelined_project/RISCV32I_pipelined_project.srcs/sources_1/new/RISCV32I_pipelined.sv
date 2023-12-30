@@ -83,33 +83,64 @@ module RISCV32I_pipelined#(
     wire [4:0] writeReg_out_id_ex,readReg1_out_id_ex, readReg2_out_id_ex;
     wire [31:0] PC_out_id_ex, PC4_out_id_ex, dataA_out_id_ex, dataB_out_id_ex, imm_out_id_ex,
     ID_EX_ReadData1,WB_Data,EX_MEM_Data,ID_EX_ReadData2,ID_EX_PC,ID_EX_Immediate;
-//EX stage
-    EX_stage EX_stage_inst(ID_EX_ReadData1,WB_Data,EX_MEM_Data,ID_EX_ReadData2,ID_EX_PC,ID_EX_Immediate,PCSrc,ALUSrc1,ALUSrc2,ALUOp,Func7,Func3,Result);
 
-    wire memRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem,;
+    always_comb begin
+        ID_EX_ReadData1 = dataA_out_id_ex;
+        WB_Data = regWrite_out_wb;
+        EX_MEM_Data = aluOut_out_ex_mem;
+        ID_EX_ReadData2 = dataB_out_id_ex;
+        ID_EX_PC = PC_out_id_ex;
+        ID_EX_Immediate = imm_out_id_ex;
+        ALUSrc1 = ALUSrc1_out_id_ex;
+        ALUSrc2 = ALUSrc2_out_id_ex;
+        ALUOp = ALUOp_out_id_ex;
+        Func7 = func7_out_id_ex;
+        Func3 = func3_out_id_ex;
+        Result = aluOut_in_ex_mem;
+    end
+
+
+//EX stage
+    EX_stage EX_stage_inst(ID_EX_ReadData1,WB_Data,EX_MEM_Data,ID_EX_ReadData2,ID_EX_PC,ID_EX_Immediate,ALUSrc1,ALUSrc2,ALUOp,Func7,Func3,readReg1_out_id_ex,
+    readReg2_out_id_ex,writeReg_out_ex_mem,writeReg_out_mem_wb,Result,dataMWrite_in_ex_mem);
+
+    wire memRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem,controlMRead_in_ex_mem,memToReg_in_ex_mem;
     wire [1:0] ;
-    wire [2:0] ;
+    wire [2:0] controlMWrite_in_ex_mem;
     wire [3:0] ;
     wire [4:0] ;
-    wire [31:0] aluOut_out_ex_mem;
+    wire [31:0] aluOut_in_ex_mem,aluOut_out_ex_mem,dataMWrite_in_ex_mem;
+
+//EXE-MEM latch
+
+    always_comb begin
+        controlMRead_in_ex_mem = memRead_out_id_ex;
+        controlMWrite_in_ex_mem = memWrite_out_id_ex;
+        memToReg_in_ex_mem = wbMuxSel_out_id_ex;
+        dataRegWrite_in_ex_mem = writeReg_out_id_ex;
 
 
-    ex_mem_latch EX_MEM_latch_inst(clk_ex_mem, rst_ex_mem, flush_ex_mem, stall_ex_mem, aluOut_in_ex_mem, writeReg_in_ex_mem, 
-    memRead_in_ex_mem, memWrite_in_ex_mem, regWrite_in_ex_mem, wbMuxSel_in_ex_mem, aluOut_out_ex_mem, writeReg_out_ex_mem, 
-    memRead_out_ex_mem, memWrite_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_id_ex);
+    end
 
-    wire ;
+
+
+    ex_mem_latch EX_MEM_latch_inst(clk, rst, flush_ex_mem, stall_ex_mem,
+    controlMRead_in_ex_mem,controlMWrite_in_ex_mem,memToReg_in_ex_mem,aluOut_in_ex_mem,dataMWrite_in_ex_mem,dataRegWrite_in_ex_mem,
+    controlMRead_out_ex_mem,controlMWrite_out_ex_mem,memToReg_out_ex_mem,aluOut_out_ex_mem,dataMWrite_out_ex_mem,dataRegWrite_out_ex_mem);
+
+    wire controlMRead_out_ex_mem,memToReg_out_ex_mem;
     wire [1:0] ;
-    wire [2:0] ;
+    wire [2:0] controlMWrite_out_ex_mem;
     wire [3:0] ;
-    wire [4:0] writeReg_out_ex_mem;
-    wire [31:0] aluOut_out_ex_mem;
+    wire [4:0] writeReg_out_ex_mem,dataRegWrite_out_ex_mem;
+    wire [31:0] aluOut_out_ex_mem,dataMWrite_out_ex_mem;
+
+    always_comb begin
+        writeReg_out_ex_mem = ;
+    end
 
 //Mem stage
-    MEM_stage MEM_stage_inst(clk, rst, aluOut_in_ex_mem, writeReg_in_ex_mem, memRead_in_ex_mem, memWrite_in_ex_mem, regWrite_in_ex_mem, 
-    wbMuxSel_in_ex_mem, aluOut_out_ex_mem, writeReg_out_ex_mem, memRead_out_ex_mem, memWrite_out_ex_mem, regWrite_out_ex_mem, 
-    wbMuxSel_out_ex_mem, writeData_in_mem_wb, memOut_in_mem_wb, regWrite_in_mem_wb, wbMuxSel_in_mem_wb, writeData_out_mem_wb, 
-    memOut_out_mem_wb, regWrite_out_mem_wb, wbMuxSel_out_mem_wb);
+    MEM_stage MEM_stage_inst(clk, rst);
 
     wire ;
     wire [1:0] ;

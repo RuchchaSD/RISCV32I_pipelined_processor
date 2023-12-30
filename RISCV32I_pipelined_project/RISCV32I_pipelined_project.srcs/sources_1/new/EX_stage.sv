@@ -17,12 +17,16 @@ module EX_stage#(
     input logic [4:0]           readReg2_out_id_ex,
     input logic [4:0]           writeReg_out_ex_mem,
     input logic [4:0]           writeReg_out_mem_wb,
-    output logic [width - 1:0]  Result  //aluOut_in_ex_mem in EXE-MEM latch
+    output logic [width - 1:0]  Result , //aluOut_in_ex_mem in EXE-MEM latch,
+    output logic [width - 1:0]  dataMWrite_in_ex_mem  
     );
     
     logic [1:0] ExMUX3_sel,ExMUX4_sel;
     logic [3:0] alu_cc;
     logic [width - 1:0]  TempALU_Opearand_1 ,TempALU_Opearand_2,ALU_Operand_1,ALU_Operand_2;
+
+
+    assign dataMWrite_in_ex_mem = TempALU_Opearand_2;
     
    MUX31 ExMUX3 (
         .d0(ID_EX_ReadData1), //data from register rd1
