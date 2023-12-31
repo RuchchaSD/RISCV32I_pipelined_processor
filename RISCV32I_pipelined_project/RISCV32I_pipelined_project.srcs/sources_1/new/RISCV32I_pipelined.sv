@@ -90,7 +90,7 @@ module RISCV32I_pipelined#(
 
 
 //ID stage
-    ID_stage ID_stage_inst(clk, rst,memRead_out_id_ex, memRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem, regWrite_out_mem_wb,
+    ID_stage ID_stage_inst(clk, rst,memRead_out_id_ex, memRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem, regWrite_out_mem_wb,wbMuxSel_out_mem_wb,
      PC_out_if_id, pc4_out_if_id, instruction_out_if_id, writeReg_out_id_ex, aluOut_out_ex_mem, writeReg_out_ex_mem, writeReg_out_mem_wb, 
      writeData_out_wb, memOut_out_mem_wb, 
      stall_if_id, flush_if_id, pcSel_out_id, stall_id_ex, flush_id_ex, ALUSrc1_in_id_ex, 
