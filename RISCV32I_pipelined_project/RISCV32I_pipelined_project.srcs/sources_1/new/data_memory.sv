@@ -31,11 +31,11 @@ module data_memory#(
     parameter DATA_WIDTH = 32
 )(
     input clk,
-    input logic [DATA_WIDTH - 1:0] ALUresult,
-    input logic [DATA_WIDTH - 1:0] WriteData,
-    input logic [2:0] MemRead, // active high
-    input logic [2:0] MemWrite, // 1 = sw, 2 = sh 3 = sb 
-    output logic[DATA_WIDTH - 1:0] ReadData
+    input logic [DATA_WIDTH - 1:0] ALUresult,   //address comming in to the data memory
+    input logic [DATA_WIDTH - 1:0] WriteData,   // data came to write on data memory
+    input logic [2:0] MemRead, // active high   //control signal to read data from data memory
+    input logic [2:0] MemWrite, // 1 = sw, 2 = sh 3 = sb  //control signal to write data to data memory
+    output logic[DATA_WIDTH - 1:0] ReadData     //data read out from data memory
     );
     
 //    logic  [DATA_WIDTH - 1:0] DMEM[ 2**(ADDRESS_LENGTH-2) :0];
