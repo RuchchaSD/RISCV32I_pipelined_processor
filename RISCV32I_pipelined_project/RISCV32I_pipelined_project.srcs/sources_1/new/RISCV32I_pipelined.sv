@@ -104,7 +104,7 @@ module RISCV32I_pipelined#(
     EX_stage EX_stage_inst(ID_EX_ReadData1,WB_Data,EX_MEM_Data,ID_EX_ReadData2,ID_EX_PC,ID_EX_Immediate,ALUSrc1,ALUSrc2,ALUOp,Func7,Func3,readReg1_out_id_ex,
     readReg2_out_id_ex,writeReg_out_ex_mem,writeReg_out_mem_wb,Result,dataMWrite_in_ex_mem);
 
-    wire memRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem,controlMRead_in_ex_mem,memToReg_in_ex_mem;
+    wire memRead_out_ex_mem, regWrite_in_ex_mem, wbMuxSel_out_ex_mem,controlMRead_in_ex_mem,memToReg_in_ex_mem;
     wire [1:0] ;
     wire [2:0] controlMWrite_in_ex_mem;
     wire [3:0] ;
@@ -118,17 +118,16 @@ module RISCV32I_pipelined#(
         controlMWrite_in_ex_mem = memWrite_out_id_ex;
         memToReg_in_ex_mem = wbMuxSel_out_id_ex;
         dataRegWrite_in_ex_mem = writeReg_out_id_ex;
+        regWrite_in_ex_mem = regWrite_out_id_ex;
 
 
     end
 
-
-
     ex_mem_latch EX_MEM_latch_inst(clk, rst, flush_ex_mem, stall_ex_mem,
-    controlMRead_in_ex_mem,controlMWrite_in_ex_mem,memToReg_in_ex_mem,aluOut_in_ex_mem,dataMWrite_in_ex_mem,dataRegWrite_in_ex_mem,
-    controlMRead_out_ex_mem,controlMWrite_out_ex_mem,memToReg_out_ex_mem,aluOut_out_ex_mem,dataMWrite_out_ex_mem,dataRegWrite_out_ex_mem);
+    controlMRead_in_ex_mem,controlMWrite_in_ex_mem,memToReg_in_ex_mem, regWrite_in_ex_mem, aluOut_in_ex_mem,dataMWrite_in_ex_mem,dataRegWrite_in_ex_mem,
+    controlMRead_out_ex_mem,controlMWrite_out_ex_mem,memToReg_out_ex_mem, regWrite_out_ex_mem, aluOut_out_ex_mem,dataMWrite_out_ex_mem,dataRegWrite_out_ex_mem);
 
-    wire controlMRead_out_ex_mem,memToReg_out_ex_mem;
+    wire controlMRead_out_ex_mem,memToReg_out_ex_mem, regWrite_out_ex_mem;
     wire [1:0] ;
     wire [2:0] controlMWrite_out_ex_mem;
     wire [3:0] ;
@@ -136,36 +135,60 @@ module RISCV32I_pipelined#(
     wire [31:0] aluOut_out_ex_mem,dataMWrite_out_ex_mem;
 
     always_comb begin
-        writeReg_out_ex_mem = ;
+        ExMem_Addr = aluOut_out_ex_mem;
+        WriteDataMem_out_ex_mem = dataMWrite_out_ex_mem;
+        MemRead_out_ex_mem = controlMRead_out_ex_mem;
+        MemWrite_out_ex_mem = controlMWrite_out_ex_mem;
+        
+
     end
 
 //Mem stage
-    MEM_stage MEM_stage_inst(clk, rst);
+    MEM_stage MEM_stage_inst(clk, ExMem_Addr,WriteDataMem_out_ex_mem,MemRead_out_ex_mem,MemWrite_out_ex_mem,memOut_in_mem_wb);
 
-    wire ;
+    wire MemRead_out_ex_mem,MemWrite_out_ex_mem, regWrite_in_mem_wb; //************Check the wire size of MemWrite_out_ex_mem signal
     wire [1:0] ;
     wire [2:0] ;
     wire [3:0] ;
-    wire [4:0] ;
-    wire [31:0] ;
+    wire [4:0] dataRegWrite_in_mem_wb;
+    wire [31:0] ExMem_Addr,WriteDataMem_out_ex_mem,memOut_in_mem_wb;
 
+//MEM-WB latch
+    always_comb begin
+        writeData_in_mem_wb = memOut_in_mem_wb;
+        memToReg_in_mem_wb = memToReg_out_ex_mem;
+        regWrite_in_mem_wb = RegWrite_out_ex_mem;
+        dataRegWrite_in_mem_wb = dataRegWrite_out_ex_mem;
+    end
 
-    mem_wb_latch MEM_WB_latch_inst(clk_mem_wb, rst_mem_wb, flush_mem_wb, stall_mem_wb, writeData_in_mem_wb, memOut_in_mem_wb, 
-    regWrite_in_mem_wb, wbMuxSel_in_mem_wb, writeData_out_mem_wb, memOut_out_mem_wb, regWrite_out_mem_wb, wbMuxSel_out_mem_wb);
+    // mem_wb_latch MEM_WB_latch_inst(clk_mem_wb, rst_mem_wb, flush_mem_wb, stall_mem_wb, writeData_in_mem_wb, memOut_in_mem_wb, 
+    // regWrite_in_mem_wb, wbMuxSel_in_mem_wb, writeData_out_mem_wb, memOut_out_mem_wb, regWrite_out_mem_wb, wbMuxSel_out_mem_wb);
 
-    wire regWrite_out_mem_wb;
+    mem_wb_latch MEM_WB_latch_inst(clk_mem_wb, rst_mem_wb, flush_mem_wb, regWrite_in_mem_wb, 
+    memToReg_in_mem_wb, memOut_in_mem_wb, writeData_in_mem_wb,dataRegWrite_in_mem_wb, regWrite_out_mem_wb, 
+    memToReg_out_mem_wb, memOut_out_mem_wb, writeData_out_mem_wb, dataRegWrite_out_mem_wb);
+
+    wire  memToReg_in_mem_wb, regWrite_out_mem_wb, memToReg_out_mem_wb;
     wire [1:0] ;
     wire [2:0] ;
     wire [3:0] ;
-    wire [4:0] writeReg_out_mem_wb,;
-     
-    wire [31:0] writeData_out_wb, memOut_out_mem_wb;
+    wire [4:0] writeReg_out_mem_wb, dataRegWrite_out_mem_wb;
+    wire [31:0] memOut_in_mem_wb, writeData_in_mem_wb, writeData_out_wb, memOut_out_mem_wb, writeData_out_mem_wb;
+
+    always_comb begin
+        wbMuxSel_out_mem_wb = memToReg_out_mem_wb;  //Signal to the mux in WB stage
+        aluOut_out_mem_wb = writeData_out_mem_wb;
+    end
+
+
 // wb stage
-    WB_stage WB_stage_inst(clk, rst, writeData_in_mem_wb, memOut_in_mem_wb, regWrite_in_mem_wb, wbMuxSel_in_mem_wb, writeData_out_mem_wb, 
-    memOut_out_mem_wb, regWrite_out_mem_wb, wbMuxSel_out_mem_wb, writeData_out_wb, memOut_out_wb, regWrite_out_wb, wbMuxSel_out_wb);
-
-
-
+    // WB_stage WB_stage_inst(clk, rst, writeData_in_mem_wb, memOut_in_mem_wb, regWrite_in_mem_wb, wbMuxSel_in_mem_wb, writeData_out_mem_wb, 
+    // memOut_out_mem_wb, regWrite_out_mem_wb, wbMuxSel_out_mem_wb, writeData_out_wb, memOut_out_wb, regWrite_out_wb, wbMuxSel_out_wb);
+    
+    WB_stage WB_stage_inst(clk, rst, wbMuxSel_out_mem_wb, aluOut_out_mem_wb, memOut_out_mem_wb, writeData_out_wb);
+    
+    wire wbMuxSel_out_mem_wb ;
+    wire [31:0] aluOut_out_mem_wb, writeData_out_wb;
 
 
 endmodule
