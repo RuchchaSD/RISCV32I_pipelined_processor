@@ -11,11 +11,11 @@ module id_ex_latch#(
         //EXE_control_signals
         input logic ALUSrc1_in_id_ex,
         input logic ALUSrc2_in_id_ex,
-        input logic ALUOp_in_id_ex, //<----------1 bit to this another 1 bit value is assigned
+        input logic [3:0] ALUOp_in_id_ex,
         
         //MEM_control_signals
-        input logic memRead_in_id_ex,
-        input logic memWrite_in_id_ex,
+        input logic [2:0] memRead_in_id_ex,
+        input logic [2:0] memWrite_in_id_ex,
 
         //WB_control_signals
         input logic regWrite_in_id_ex,
@@ -47,8 +47,8 @@ module id_ex_latch#(
         output logic ALUOp_out_id_ex,// ????? here it is assigned a two bit value from datapath but here it is assigned a one bit value
         
         //MEM_control_signals
-        output logic memRead_out_id_ex,
-        output logic memWrite_out_id_ex,
+        output logic [2:0] memRead_out_id_ex,
+        output logic [2:0] memWrite_out_id_ex,
 
         //WB_control_signals
         output logic regWrite_out_id_ex,

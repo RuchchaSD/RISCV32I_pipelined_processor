@@ -22,7 +22,7 @@ module EX_stage#(
     );
     
     logic [1:0] ExMUX3_sel,ExMUX4_sel;
-    logic [3:0] alu_cc;
+    // logic [3:0] alu_cc;
     logic [width - 1:0]  TempALU_Opearand_1 ,TempALU_Opearand_2,ALU_Operand_1,ALU_Operand_2;
 
 

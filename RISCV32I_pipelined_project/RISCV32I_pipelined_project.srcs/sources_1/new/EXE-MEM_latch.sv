@@ -9,7 +9,7 @@ module ex_mem_latch#(
 //INPUT
     //INPUT control signals
         //MEM_control_signals
-        input logic  controlMRead_in_ex_mem,
+        input logic [2:0] controlMRead_in_ex_mem,
         input logic [2:0] controlMWrite_in_ex_mem,
         //WB_control_signals
         input logic  memToReg_in_ex_mem,
@@ -26,7 +26,7 @@ module ex_mem_latch#(
 //OUTPUT 
      //OUTPUT control signals
         //MEM_control_signals
-        output reg  controlMRead_out_ex_mem,
+        output reg [2:0] controlMRead_out_ex_mem,
         output reg [2:0] controlMWrite_out_ex_mem,
         //WB_control_signals
         output reg  memToReg_out_ex_mem,
