@@ -50,7 +50,7 @@ module ID_stage(
         //IF stage
         output logic stall_if_id,
         output logic flush_if_id,
-        output logic pcSel_out_id,
+        output logic [1:0] pcSel_out_id,
 
         //EX stage
         output logic stall_id_ex,
@@ -102,7 +102,9 @@ module ID_stage(
     imm_gen immg(instruction_out_if_id, imm_in_id_ex);
     control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,memWrite_in_id_ex,wbMuxSel_in_id_ex,branch);
     
-//    hazard_control_unit hcu_inst();
+    hazard_control_unit hcu_inst(memRead_out_id_ex, memRead_out_ex_mem, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_id_ex, writeReg_out_ex_mem, stall);
+
+
 // branch data forward 
     
     
@@ -120,8 +122,26 @@ module ID_stage(
         if(isJalr)
             jmpAddress_out_id = jalrAdd;
         else 
-            jmpAddress_out_id = brAdd;
+            // jmpAddress_out_id = brAdd; //uncomment when implementing branch
+            jmpAddress_out_id = 0;
     end
+
+
+    assign pcSel_out_id = 0; // change when implementing branch
+
+    //stall and flush flush logic change after implementing units
+    always_comb begin
+        stall_if_id = 0;
+        flush_if_id = 0;
+        stall_id_ex = 0;
+        flush_id_ex = 0;
+        stall_ex_mem = 0;
+        flush_ex_mem = 0;
+        stall_mem_wb = 0;
+        flush_mem_wb = 0;
+    end
+
+    
     
     
     

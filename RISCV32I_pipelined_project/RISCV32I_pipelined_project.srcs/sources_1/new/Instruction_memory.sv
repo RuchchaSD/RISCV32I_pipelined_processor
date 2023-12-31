@@ -7,12 +7,14 @@ module Instruction_memory#(
 )(
     input clk,
     input rst,
-    input logic [ add_length - 1 : 0 ] address,
+    input logic [ width - 1 : 0 ] fullAddress,
     output logic [ width - 1 : 0] instruction
     
     );
+    logic [add_length - 1 : 0] address; 
     logic  [width - 1:0] imem[ 2**(add_length-2) - 1:0];
     
+    assign address = fullAddress[8:0];
     //add instructions in here
     always_ff @(negedge rst) begin
         if(!rst) begin

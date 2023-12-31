@@ -74,7 +74,7 @@ module EX_stage#(
 //        .ALU_control(alu_cc) //ouput signal to alu
 //   );
    
-   ALU_data_forward(regWrite_out_ex_mem,regWrite_out_mem_wb,writeReg_out_ex_mem,writeReg_out_mem_wb,
+   ALU_data_forward ALU_data_forward_inst(regWrite_out_ex_mem,regWrite_out_mem_wb,writeReg_out_ex_mem,writeReg_out_mem_wb,
                     readReg1_out_id_ex,readReg2_out_id_ex,
                     ExMUX3_sel,ExMUX4_sel);
 
