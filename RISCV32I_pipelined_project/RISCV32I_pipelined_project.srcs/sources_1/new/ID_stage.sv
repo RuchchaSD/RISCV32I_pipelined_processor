@@ -95,17 +95,16 @@ module ID_stage(
 );
     
     logic [31:0] jalrAdd,brAdd;
-    logic beq, blt,isJalr,branch,stall,branchTaken;
+    logic beq, blt,isJalr,branch,stall,branchTaken,Id_Flush,If_Flush,Jump;
     logic [1:0] brach_mux1, brach_mux2;
     
-    register_memory reg_mem(clk, rst,
-     regWrite_out_mem_wb,
-      writeReg_out_mem_wb, readReg1_in_id_ex,readReg2_in_id_ex,
-      writeData_out_wb
-      ,dataA_in_id_ex,dataB_in_id_ex);
+    register_memory reg_mem(clk, rst, regWrite_out_mem_wb, writeReg_out_mem_wb, readReg1_in_id_ex,readReg2_in_id_ex,
+      writeData_out_wb,dataA_in_id_ex,dataB_in_id_ex);
     
     imm_gen immg(instruction_out_if_id, imm_in_id_ex);
-    control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,memWrite_in_id_ex,wbMuxSel_in_id_ex,branch);
+    control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,
+    memWrite_in_id_ex,wbMuxSel_in_id_ex,branch,
+                                                    isJalr,flush_ex_mem,flush_if_id,If_Flush,Jump);
     
     hazard_control_unit hcu_inst(memRead_out_id_ex, memRead_out_ex_mem, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_id_ex, writeReg_out_ex_mem, stall);
 
@@ -152,11 +151,11 @@ module ID_stage(
     //stall and flush flush logic change after implementing units
     always_comb begin
         stall_if_id = stall;
-        flush_if_id = 0;// no use
+        // flush_if_id = 0;// no use
         stall_id_ex = 0;//no use
-        flush_id_ex = stall; // another signals comes here from control unit, stall || flush_id 
+        flush_id_ex = stall || Id_Flush; // another signals comes here from control unit, stall || flush_id 
         stall_ex_mem = 0;//no use
-        flush_ex_mem = 0;//signal comes from control unit flush_ex
+        // flush_ex_mem = 0;//signal comes from control unit flush_ex
         stall_mem_wb = 0;//no use
         flush_mem_wb = 0;//no use
     end
