@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Alu_Data_Forward(
+module ALU_data_forward(
     input logic regWrite_out_ex_mem,
     input logic regWrite_out_mem_wb,
     input logic [4:0] writeReg_out_ex_mem,

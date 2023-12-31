@@ -14,10 +14,10 @@ module ID_stage(
         //IF stage
 
         //EX stage
-        input logic memRead_out_id_ex,
+        input logic [2:0] memRead_out_id_ex,
 
         //MEM stage
-        input logic memRead_out_ex_mem,
+        input logic [2:0] memRead_out_ex_mem,
         input logic regWrite_out_ex_mem,
         input logic wbMuxSel_out_ex_mem,
 
@@ -64,8 +64,8 @@ module ID_stage(
         //MEM stage
         output logic stall_ex_mem,
         output logic flush_ex_mem,
-        output logic memRead_in_id_ex,
-        output logic memWrite_in_id_ex,
+        output logic [2:0] memRead_in_id_ex,
+        output logic [2:0] memWrite_in_id_ex,
 
 
         //WB stage
@@ -95,16 +95,20 @@ module ID_stage(
 );
     
     logic [31:0] jalrAdd,brAdd;
-    logic beq, blt,isJalr;
+    logic beq, blt,isJalr,branch;
     
-    register_memory reg_mem(clk, rst, regWrite_in_id_ex, writeReg_in_id_ex, readReg1_in_id_ex, readReg2_in_id_ex, writeData_in_id_ex, dataA_in_id_ex, dataB_in_id_ex);
+    register_memory reg_mem(clk, rst, regWrite_in_id_ex, writeReg_in_id_ex, readReg1_in_id_ex,readReg2_in_id_ex,writeData_in_id_ex,dataA_in_id_ex,dataB_in_id_ex);
     branch_comp bc(branch, dataA_in_id_ex, dataB_in_id_ex, beq, blt);
     imm_gen immg(instruction_out_if_id, imm_in_id_ex);
+    control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,memWrite_in_id_ex,wbMuxSel_in_id_ex,branch);
+    
+//    hazard_control_unit hcu_inst();
+// branch data forward 
     
     
     //combinational
     always_comb begin
-        readReg1_in_id_ex = instruction_out_if_id[19 : 15];
+        readReg1_in_id_ex = instruction_out_if_id[19:15];
         readReg2_in_id_ex = instruction_out_if_id[24:20];
         writeReg_in_id_ex = instruction_out_if_id[11:7];
         

@@ -1,27 +1,30 @@
 `timescale 1ns / 1ps
-//Student ID - 200709K
 
 module control_unit(
 //inputs
     input logic clk,
     input logic rst,
     input logic [31:0] instruction,
-    input logic beq,
-    input logic blt,
-    input logic [1:0] diff, //0:rs1, 1:pc
-    input logic [1:0] ilt,
+    // input logic beq,
+    // input logic blt,
+    // input logic [1:0] diff, //0:rs1, 1:pc
+    // input logic [1:0] ilt,
 //outputs
     // output logic [3:0] immSel,// not needed
     output logic [3:0] aluControl,
-    output logic [1:0] pcSel, //0:pc+4, 1:aluOut
+    output logic [1:0] ALUSrc1,
+    output logic [1:0] ALUSrc2,
+    output logic [2:0] memRead,
     output logic regWrite, 
-    output logic [2:0] memWrite, 
-    output logic branch, //0:beq, 1:blt
-    output logic [1:0] aSel, //0:rs1, 1:pc
-    output logic [1:0] bSel, //0:rs2, 1:imm
-    output logic [1:0] wSel, //0:aluOut, 1:memOut, 2: PC+4
-    output logic [2:0] extSel, //0:sign extend, 1:zero extend, 2:shift left 1, 3:shift left 12
-    output logic increment, counterEn, memWsel, dataregWrite
+    output logic [2:0] memWrite,
+    output logic wbMuxsel,
+    output logic branch //0:beq, 1:blt
+    // output logic [1:0] pcSel, //0:pc+4, 1:aluOut
+    // output logic [1:0] aSel, //0:rs1, 1:pc
+    // output logic [1:0] bSel, //0:rs2, 1:imm
+    // output logic [1:0] wSel, //0:aluOut, 1:memOut, 2: PC+4
+    // output logic [2:0] extSel, //0:sign extend, 1:zero extend, 2:shift left 1, 3:shift left 12
+    // output logic increment, counterEn, memWsel, dataregWrite
     );
     
     logic [6:0] opcode;
@@ -43,68 +46,17 @@ module control_unit(
         for (int i=0; i < 256; ++i) begin
             Control[i] = 32'b00000000000000000000000001110000;
         end
-
-
         //Rtype
-        // Control[0] = 32'b00000000000000000000000001110000;
-        Control[1] = 32'b00000000000100100000000001110000;
-        Control[2] = 32'b00000000001000100000000001110000;
-        Control[3] = 32'b00000000001100100000000001110000;
-        Control[5] = 32'b00000000010000100000000001110000;
-        Control[7] = 32'b00000000010100100000000001110000;
-        Control[9] = 32'b00000000011000100000000001110000;
-        Control[11] = 32'b00000000100000100000000001110000;
-        Control[12] = 32'b00000000011100100000000001110000;
-        Control[13] = 32'b00000000100100100000000001110000;
-        Control[15] = 32'b00000000101000100000000001110000;
-        Control[10] = 32'b00000000111100100000000001110000;
-
-        //LUI
-        Control[17] = 32'b00000000000000100000001111110000;
-        //AUIPC
-        Control[129] = 32'b00000000000100100000101001110000;
-
-        //JALR
-        Control[33] = 32'b00000000000110100000001101110000;
-        //Itype Arith
-        Control[49] = 32'b00000000000100100000001001110000;
-        Control[53] = 32'b00000000010000100000001001110000;
-        Control[55] = 32'b00000000010100100000001001110000;
-        Control[57] = 32'b00000000011000100000001001110000;
-        Control[61] = 32'b00000000100100100000001001110000;
-        Control[63] = 32'b00000000101000100000001001110000;
-        Control[51] = 32'b00000000001100100000001001110000;
-        Control[59] = 32'b00000000100000100000001001110000;
-        Control[60] = 32'b00000000011100100000001001110000;
-
-        //I type load
-        Control[65] = 32'b00000000000100100000001010000000;
-        Control[67] = 32'b00000000000100100000001010010000;
-        Control[69] = 32'b00000000000100100000001010100000;
-        Control[73] = 32'b00000000000100100000001011000000;
-        Control[75] = 32'b00000000000100100000001011010000;
-
-        //Stype
-        Control[81] = 32'b00000000000100001100001001110000;
-        Control[83] = 32'b00000000000100001000001001110000;
-        Control[85] = 32'b00000000000100000100001001110000;
-
-        //sb type
-        Control[97] = 32'b00000000000101000000101001110000;
-        Control[99] = 32'b00000000000101000000101001110000;
-        Control[105] = 32'b00000000000101000000101001110000;
-        Control[107] = 32'b00000000000101000000101001110000;
-        Control[109] = 32'b00000000000101000010101001110000;
-        Control[111] = 32'b00000000000101000010101001110000;
-
-        //Jtype
-        Control[113] = 32'b00000000000110100000101101110000;
-
-        //MEMCOPY 
-        Control[145] = 32'b10010010000111000000011000000101; //MEMCOPY
-        Control[147] = 32'b10010100000111000101100000000110;
-        Control[149] = 32'b10010010000111000000011000001101;
-        Control[150] = 32'b00000000000000000000000000000010;
+        Control[1] = 32'b0010000000000001000000000; //ADD
+        Control[2] = 32'b0010000000000011000000000; //SUB
+        Control[3] = 32'b0010000000000010000000000; //SLL
+        Control[5] = 32'b0010000000000101000000000; //SLT
+        Control[7] = 32'b0010000000000010100000000; //SLTU
+        Control[9] = 32'b0010000000000001100000000; //XOR
+        Control[11] = 32'b0010000000000100000000000; //SRL
+        Control[12] = 32'b0010000000000110000000000; //SRA
+        Control[13] = 32'b0010000000000000100000000; //OR
+        Control[15] = 32'b0010000000000111100000000; //AND
     end
 
 
@@ -117,21 +69,31 @@ module control_unit(
         funct3 = instruction[14:12];
         funct7 = instruction[31:25];
         
-        tempOp = microIns[31:24];
-        aluControl = microIns[23:20];
-        pccon = microIns[19:18];
-        regWrite = microIns[17];
-        memWriteCon = microIns[16:14];
-        branch = microIns[13];
-        aSel = microIns[12:11];
-        bSel = microIns[10:9];
-        wSel = microIns[8:7];
-        extSel = microIns[6:4];
-        // memWsel = microIns[4];
-        increment = microIns[3];
-        counterEn = microIns[2];
-        memWsel = microIns[1];
-        dataregWrite = microIns[0];
+        tempOp = microIns[7:0];
+        aluControl = microIns[11:8];
+        ALUSrc1 = microIns[13:12];
+        ALUSrc2 = microIns[15:14];
+        memRead = microIns[18 : 16];
+        memWrite = microIns[21 : 19];
+        regWrite = microIns[22];
+        wbMuxsel = microIns[23];
+        branch = microIns[24];
+
+
+
+        // pccon = microIns[19:18];
+        // regWrite = microIns[17];
+        // memWriteCon = microIns[16:14];
+        // branch = microIns[13];
+        // aSel = microIns[12:11];
+        // bSel = microIns[10:9];
+        // wSel = microIns[8:7];
+        // extSel = microIns[6:4];
+        // // memWsel = microIns[4];
+        // increment = microIns[3];
+        // counterEn = microIns[2];
+        // memWsel = microIns[1];
+        // dataregWrite = microIns[0];
     end
     
    
@@ -239,10 +201,6 @@ module control_unit(
         end
     end 
 
-
-
-
-
     always_comb begin
         microIns = Control[microOp] ;
     end
@@ -256,71 +214,71 @@ always_comb
 
 
 //pcSel //beq,blt
-    always_comb begin
-        if(pccon == 1)
-            case(funct3)
-                3'b000://BEQ
-                    if(beq)
-                        pcSel = 1; 
-                    else 
-                        pcSel = 0;  
-                3'b001://BNE
-                    if(!beq)
-                        pcSel = 1;
-                    else 
-                        pcSel = 0;
-                3'b100://BLT
-                    if(blt)
-                        pcSel = 1;
-                    else 
-                        pcSel = 0;
-                3'b101://BGE
-                    if(!blt)
-                        pcSel = 1;
-                    else 
-                        pcSel = 0;
-                3'b110://BLTU
-                    if(blt)
-                        pcSel = 1;
-                    else 
-                        pcSel = 0;
-                3'b111://BGEU
-                    if(!blt)
-                        pcSel = 1;
-                    else 
-                        pcSel = 0;
-                default:
-                     pcSel = 0;
-            endcase
-        else if(pccon == 2)
-            pcSel = 1;
-        else if(pccon == 3)
-            pcSel = 2;
-        else
-            pcSel = 0;
-        end
+    // always_comb begin
+    //     if(pccon == 1)
+    //         case(funct3)
+    //             3'b000://BEQ
+    //                 if(beq)
+    //                     pcSel = 1; 
+    //                 else 
+    //                     pcSel = 0;  
+    //             3'b001://BNE
+    //                 if(!beq)
+    //                     pcSel = 1;
+    //                 else 
+    //                     pcSel = 0;
+    //             3'b100://BLT
+    //                 if(blt)
+    //                     pcSel = 1;
+    //                 else 
+    //                     pcSel = 0;
+    //             3'b101://BGE
+    //                 if(!blt)
+    //                     pcSel = 1;
+    //                 else 
+    //                     pcSel = 0;
+    //             3'b110://BLTU
+    //                 if(blt)
+    //                     pcSel = 1;
+    //                 else 
+    //                     pcSel = 0;
+    //             3'b111://BGEU
+    //                 if(!blt)
+    //                     pcSel = 1;
+    //                 else 
+    //                     pcSel = 0;
+    //             default:
+    //                  pcSel = 0;
+    //         endcase
+    //     else if(pccon == 2)
+    //         pcSel = 1;
+    //     else if(pccon == 3)
+    //         pcSel = 2;
+    //     else
+    //         pcSel = 0;
+    //     end
     
     
 //determine jump and extSel
-always_comb begin
-    if(tempOp == 8'b10010100 && ( ilt[1] == 1'b1 || ilt[0] == 1'b1 ) ) // imm == cnt
-        jump = 1;
-    else
-        jump = 0;
+    // always_comb begin
+    //     if(tempOp == 8'b10010100 && ( ilt[1] == 1'b1 || ilt[0] == 1'b1 ) ) // imm == cnt
+    //         jump = 1;
+    //     else
+    //         jump = 0;
 
-    if(tempOp == 8'h94 && ilt[0] == 1'b1)  //$unsigned(imm) < $unsigned(cntPlus4)                                   
-        case(diff)
-            2'b00: memWrite = 3'b000;
-            2'b01: memWrite = 3'b100;
-            2'b10: memWrite = 3'b101;
-            2'b11: memWrite = 3'b110;
-            default: memWrite = 3'b000;
-        endcase
-    else
-        memWrite = memWriteCon;
-        // memWrite = 3;
+    //     if(tempOp == 8'h94 && ilt[0] == 1'b1)  //$unsigned(imm) < $unsigned(cntPlus4)                                   
+    //         case(diff)
+    //             2'b00: memWrite = 3'b000;
+    //             2'b01: memWrite = 3'b100;
+    //             2'b10: memWrite = 3'b101;
+    //             2'b11: memWrite = 3'b110;
+    //             default: memWrite = 3'b000;
+    //         endcase
+    //     else
+    //         memWrite = memWriteCon;
+    //         // memWrite = 3;
 
-end
+    // end
 
 
 

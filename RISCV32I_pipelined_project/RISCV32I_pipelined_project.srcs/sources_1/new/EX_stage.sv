@@ -10,7 +10,7 @@ module EX_stage#(
 //    input logic [1:0]           PCSrc,
     input logic [1:0]           ALUSrc1,
     input logic [1:0]           ALUSrc2,
-    input logic [1:0]           ALUOp,
+    input logic [3:0]           ALUOp,
     input logic [6:0]           Func7,
     input logic [2:0]           Func3,
     input logic [4:0]           readReg1_out_id_ex,
@@ -63,16 +63,16 @@ module EX_stage#(
    ALU alu (
         .SrcA(ALU_Operand_1),  //ALUSrcA
         .SrcB(ALU_Operand_2),  //ALUSrcB
-        .ALU_control(alu_cc), //AlU control signal from ALU CU
+        .ALU_control(ALUOp), //AlU control signal from ALU CU
         .ALUResult(Result) // Connect ALUResult to ALU's output
     );
     
-   ALU_controller ac(
-        .ALUop(ALUOp), //ALU Op control signal
-        .Funct7(Func7), //Instruction [30,25,14-12,3] part that should be taken from the latch
-        .Funct3(Func3), //same as above?
-        .ALU_control(alu_cc) //ouput signal to alu
-   );
+//   ALU_controller ac(
+//        .ALUop(ALUOp), //ALU Op control signal
+//        .Funct7(Func7), //Instruction [30,25,14-12,3] part that should be taken from the latch
+//        .Funct3(Func3), //same as above?
+//        .ALU_control(alu_cc) //ouput signal to alu
+//   );
    
    ALU_data_forward(regWrite_out_ex_mem,regWrite_out_mem_wb,writeReg_out_ex_mem,writeReg_out_mem_wb,
                     readReg1_out_id_ex,readReg2_out_id_ex,
