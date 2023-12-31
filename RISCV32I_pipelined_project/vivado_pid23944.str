@@ -5,11 +5,11 @@ SW Build: 3865809 on Sun May  7 15:05:29 MDT 2023
 IP Build: 3864474 on Sun May  7 20:36:21 MDT 2023
 IP Build: 3864474 on Sun May  7 20:36:21 MDT 2023
 
-Process ID (PID): 19696
+Process ID (PID): 23944
 License: Customer
 Mode: GUI Mode
 
-Current time: 	Sat Dec 30 10:07:43 IST 2023
+Current time: 	Sun Dec 31 08:59:54 IST 2023
 Time zone: 	India Standard Time (Asia/Colombo)
 
 OS: Windows 11
@@ -50,14 +50,14 @@ Vivado layouts directory: C:/Users/Dell/AppData/Roaming/Xilinx/Vivado/2023.1/dat
 PlanAhead jar file: 	C:/Xilinx/Vivado/2023.1/lib/classes/planAhead.jar
 Vivado log file: 	C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/vivado.log
 Vivado journal file: 	C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/vivado.jou
-Engine tmp dir: 	C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/.Xil/Vivado-19696-DESKTOP-IGE9KH3
+Engine tmp dir: 	C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/.Xil/Vivado-23944-DESKTOP-IGE9KH3
 Non-Default Parameters:	[]
 
 Xilinx & AMD Environment Variables
 --------------------------------------------------------------------------------------------
 JAVA_HOME: C:\Program Files\Java\jdk-19
 RDI_APPROOT: C:/Xilinx/Vivado/2023.1
-RDI_ARGS:  -gui_launcher_event rodinguilauncherevent6420 "C:\Users\Dell\OneDrive - University of Moratuwa\Documents\Thulani\University of Moratuwa\5th Sem\DSD\Pipeline Grp\PipelineGrpRepo\RISCV32I_pipelined_processor\RISCV32I_pipelined_project\RISCV32I_pipelined_project.xpr"
+RDI_ARGS:  -gui_launcher_event rodinguilauncherevent11580 "C:\Users\Dell\OneDrive - University of Moratuwa\Documents\Thulani\University of Moratuwa\5th Sem\DSD\Pipeline Grp\PipelineGrpRepo\RISCV32I_pipelined_processor\RISCV32I_pipelined_project\RISCV32I_pipelined_project.xpr"
 RDI_ARGS_FUNCTION: RDI_EXEC_DEFAULT
 RDI_BASEROOT: C:/Xilinx/Vivado
 RDI_BINDIR: C:/Xilinx/Vivado/2023.1/bin
@@ -85,7 +85,7 @@ RDI_PYTHON3_VERSION: 3.8.3
 RDI_PYTHONHOME: C:/Xilinx/Vivado/2023.1\tps\win64\python-3.8.3
 RDI_PYTHONPATH: C:/Xilinx/Vivado/2023.1\tps\win64\python-3.8.3;C:/Xilinx/Vivado/2023.1\tps\win64\python-3.8.3\bin;C:/Xilinx/Vivado/2023.1\tps\win64\python-3.8.3\lib;C:/Xilinx/Vivado/2023.1\tps\win64\python-3.8.3\lib\site-packages
 RDI_PYTHON_LD_LIBPATH: C:/Xilinx/Vivado/2023.1\tps\win64\python-3.8.3\lib
-RDI_SESSION_INFO: C:\Users\Dell\OneDrive-UniversityofMoratuwa\Documents\Thulani\UniversityofMoratuwa\5thSem\DSD\PipelineGrp\PipelineGrpRepo\RISCV32I_pipelined_processor\RISCV32I_pipelined_project:DESKTOP-IGE9KH3-Sat12-30-2023_10-07-10.07
+RDI_SESSION_INFO: C:\Users\Dell\OneDrive-UniversityofMoratuwa\Documents\Thulani\UniversityofMoratuwa\5thSem\DSD\PipelineGrp\PipelineGrpRepo\RISCV32I_pipelined_processor\RISCV32I_pipelined_project:DESKTOP-IGE9KH3-Sun12-31-2023_8-59-28.66
 RDI_SHARED_DATA: C:/Xilinx/SharedData/2023.1/data
 RDI_TPS_ROOT: C:/Xilinx/Vivado/2023.1/tps/win64
 RDI_USE_JDK17: True
@@ -102,7 +102,7 @@ _RDI_CWD: C:\Users\Dell\OneDrive - University of Moratuwa\Documents\Thulani\Univ
 
 GUI allocated memory:	512 MB
 GUI max memory:		4,072 MB
-Engine allocated memory: 516 MB
+Engine allocated memory: 640 MB
 
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
@@ -112,14 +112,12 @@ Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // TclEventType: START_GUI
 // Tcl Message: start_gui 
 // TclEventType: PROJECT_OPEN_DIALOG
-// WARNING: HEventQueue.dispatchEvent() is taking  1001 ms.
-// HMemoryUtils.trashcanNow. Engine heap size: 533 MB. GUI used memory: 69 MB. Current time: 12/30/23, 10:07:44 AM IST
-// WARNING: HEventQueue.dispatchEvent() is taking  1012 ms.
-selectButton(RDIResource.BaseDialog_OK, "OK"); // a
-// Opening Vivado Project: C:\Users\Dell\OneDrive - University of Moratuwa\Documents\Thulani\University of Moratuwa\5th Sem\DSD\Pipeline Grp\PipelineGrpRepo\RISCV32I_pipelined_processor\RISCV32I_pipelined_project\RISCV32I_pipelined_project.xpr. Version: Vivado v2022.2 
-dismissDialog("Older Project Version"); // at
+// Opening Vivado Project: C:\Users\Dell\OneDrive - University of Moratuwa\Documents\Thulani\University of Moratuwa\5th Sem\DSD\Pipeline Grp\PipelineGrpRepo\RISCV32I_pipelined_processor\RISCV32I_pipelined_project\RISCV32I_pipelined_project.xpr. Version: Vivado v2023.1 
 // TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project {C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.xpr} 
+// Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project' 
 // TclEventType: FLOW_ADDED
+// HMemoryUtils.trashcanNow. Engine heap size: 645 MB. GUI used memory: 69 MB. Current time: 12/31/23, 8:59:55 AM IST
 // TclEventType: MSGMGR_MOVEMSG
 // TclEventType: FILE_SET_CHANGE
 // TclEventType: FILE_SET_NEW
@@ -140,63 +138,31 @@ dismissDialog("Older Project Version"); // at
 // TclEventType: PROJECT_NEW
 // Tcl Message: open_project {C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.xpr} 
 // Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project' 
-// Tcl Message: open_project {C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.xpr} 
-// Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project' 
-// Tcl Message: INFO: [Project 1-313] Project file moved from 'D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project' since last save. INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.gen/sources_1'. 
+// Tcl Message: INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.gen/sources_1'. 
 // Tcl Message: Scanning sources... Finished scanning sources 
-// Tcl Message: INFO: [Project 1-230] Project 'RISCV32I_pipelined_project.xpr' upgraded for this version of Vivado. INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
 // TclEventType: PROJECT_NEW
-// [GUI Memory]: 115 MB (+118039kb) [00:00:25]
-// [Engine Memory]: 685 MB (+566802kb) [00:00:25]
-// WARNING: HEventQueue.dispatchEvent() is taking  2235 ms.
+// [GUI Memory]: 109 MB (+111734kb) [00:00:29]
+// [Engine Memory]: 708 MB (+590412kb) [00:00:29]
+// [Engine Memory]: 775 MB (+33359kb) [00:00:30]
+// WARNING: HEventQueue.dispatchEvent() is taking  3783 ms.
 // Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2023.1/data/ip'. 
-// [GUI Memory]: 131 MB (+10486kb) [00:00:26]
+// [GUI Memory]: 116 MB (+1447kb) [00:00:32]
 // Project name: RISCV32I_pipelined_project; location: C:/Users/Dell/OneDrive - University of Moratuwa/Documents/Thulani/University of Moratuwa/5th Sem/DSD/Pipeline Grp/PipelineGrpRepo/RISCV32I_pipelined_processor/RISCV32I_pipelined_project; part: xc7z010clg400-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1498.930 ; gain = 172.578 
+// [GUI Memory]: 151 MB (+30606kb) [00:00:32]
 dismissDialog("Open Project"); // bq
 // Tcl Message: update_compile_order -fileset sources_1 
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 73 MB. Current time: 12/30/23, 10:08:34 AM IST
-// [Engine Memory]: 728 MB (+9648kb) [00:01:23]
-// Elapsed time: 67 seconds
-selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1, true); // E - Node
-selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1, true, false, false, false, false, true); // E - Double Click - Node
-// PAPropertyPanels.initPanels (RISCV32I_pipelined.sv) elapsed time: 0.2s
-selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, RISCV32I_pipelined.sv]", 2, false); // E
-selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, RISCV32I_pipelined.sv]", 2, false, false, false, false, false, true); // E - Double Click
-// [GUI Memory]: 152 MB (+15188kb) [00:01:37]
-// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 1091 ms. Increasing delay to 3273 ms.
-// TclEventType: DG_GRAPH_STALE
-// WARNING: HTimer (FileMgr Design Graph Update Timer) is taking 698ms to process. Increasing delay to 3000 ms.
-// TclEventType: DG_GRAPH_STALE
-// TclEventType: FILE_SET_CHANGE
-// WARNING: HEventQueue.dispatchEvent() is taking  1020 ms.
-// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 2634 ms. Increasing delay to 7902 ms.
-// Elapsed Time for: 'L.f': 26m:21s
-// Elapsed Time for: 'L.f': 26m:23s
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 76 MB. Current time: 12/30/23, 10:38:37 AM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 76 MB. Current time: 12/30/23, 11:08:41 AM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 57 MB. Current time: 12/30/23, 11:38:44 AM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 56 MB. Current time: 12/30/23, 12:08:48 PM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 57 MB. Current time: 12/30/23, 12:38:51 PM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 56 MB. Current time: 12/30/23, 1:08:53 PM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 56 MB. Current time: 12/30/23, 1:38:56 PM IST
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 56 MB. Current time: 12/30/23, 2:08:58 PM IST
-// WARNING: HEventQueue.dispatchEvent() is taking  4935777 ms.
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 56 MB. Current time: 12/30/23, 3:35:25 PM IST
-// WARNING: HEventQueue.dispatchEvent() is taking  1933 ms.
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 57 MB. Current time: 12/30/23, 4:05:28 PM IST
-// WARNING: HEventQueue.dispatchEvent() is taking  3813256 ms.
-// WARNING: HEventQueue.dispatchEvent() is taking  200672 ms.
-// HMemoryUtils.trashcanNow. Engine heap size: 728 MB. GUI used memory: 58 MB. Current time: 12/30/23, 5:23:20 PM IST
-// WARNING: HEventQueue.dispatchEvent() is taking  1388 ms.
-// TclEventType: DG_GRAPH_STALE
-// TclEventType: FILE_SET_CHANGE
-// Elapsed Time for: 'L.f': 07h:22m:57s
-// Elapsed Time for: 'L.f': 07h:22m:59s
-// TclEventType: DG_GRAPH_STALE
-// TclEventType: FILE_SET_CHANGE
-// Elapsed Time for: 'L.f': 07h:23m:20s
-// Elapsed Time for: 'L.f': 07h:23m:23s
-// TclEventType: DG_GRAPH_STALE
-// TclEventType: FILE_SET_CHANGE
-// Elapsed Time for: 'L.f': 07h:23m:44s
-// Elapsed Time for: 'L.f': 07h:23m:47s
+// Elapsed time: 14 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, hazard_control_unit (hazard_control_unit.sv)]", 14, false); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, hazard_control_unit (hazard_control_unit.sv)]", 14, false, false, false, false, false, true); // E - Double Click
+// Elapsed time: 22 seconds
+selectCodeEditor("hazard_control_unit.sv", 57, 224); // ad
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, RISCV32I_pipelined (RISCV32I_pipelined.sv), ID_stage_inst : ID_stage (ID_stage.sv)]", 6); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, RISCV32I_pipelined (RISCV32I_pipelined.sv), ID_stage_inst : ID_stage (ID_stage.sv), immg : imm_gen (imm_gen.sv)]", 9, false); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, RISCV32I_pipelined (RISCV32I_pipelined.sv), ID_stage_inst : ID_stage (ID_stage.sv), immg : imm_gen (imm_gen.sv)]", 9, false, false, false, false, false, true); // E - Double Click
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // F
+// Elapsed time: 211 seconds
+selectCodeEditor("hazard_control_unit.sv", 186, 86); // ad
+// WARNING: HTimer (FileMgr Design Graph Update Timer) is taking 608ms to process. Increasing delay to 3000 ms.
+// WARNING: HEventQueue.dispatchEvent() is taking  1616 ms.

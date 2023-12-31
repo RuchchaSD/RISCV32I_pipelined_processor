@@ -20,11 +20,11 @@ module IF_stage#(
 );
         
     //initiations
-    Instruction_memory instruction_in_if_id_memory_inst(
+    Instruction_memory instruction_memory_inst(
         .clk(clk),
         .rst(rst),
         .address(PC_in_if_id),
-        .instruction_in_if_id(instruction_in_if_id)
+        .instruction(instruction_in_if_id)
         );
     
     
@@ -40,11 +40,11 @@ module IF_stage#(
         end
         else begin
             if(pcSel == 2'b01)
-                PC_in_if_id <= jmpAddress;
+                PC_in_if_id <= jmpAddress;// jump address
             else if(pcSel == 2'b10)
-                PC_in_if_id <= PC_in_if_id;
+                PC_in_if_id <= PC_in_if_id; //stall
             else 
-                PC_in_if_id <= PC4_in_if_id;
+                PC_in_if_id <= PC4_in_if_id; // else PC <= PC + 4
         end
     end
 endmodule
