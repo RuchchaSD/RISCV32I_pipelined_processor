@@ -20,7 +20,7 @@ module IF_stage#(
 );
         
     //initiations
-    instruction_in_if_id_memory instruction_in_if_id_memory_inst(
+    Instruction_memory instruction_in_if_id_memory_inst(
         .clk(clk),
         .rst(rst),
         .address(PC_in_if_id),
