@@ -50,7 +50,7 @@ module ID_stage(
         //IF stage
         output logic stall_if_id,
         output logic flush_if_id,
-        output logic [1:0] pcSel_out_id,
+        output logic [1:0] pcSel_out_id,branch,
 
         //EX stage
         output logic stall_id_ex,
@@ -95,7 +95,7 @@ module ID_stage(
 );
     
     logic [31:0] jalrAdd,brAdd;
-    logic beq, blt,isJalr,branch,stall,branchTaken,Id_Flush,If_Flush,Jump;
+    logic beq, blt,isJalr,stall,branchTaken,Id_Flush,If_Flush,Jump;
     logic [1:0] brach_mux1, brach_mux2;
     
     register_memory reg_mem(clk, rst, regWrite_out_mem_wb, writeReg_out_mem_wb, readReg1_in_id_ex,readReg2_in_id_ex,

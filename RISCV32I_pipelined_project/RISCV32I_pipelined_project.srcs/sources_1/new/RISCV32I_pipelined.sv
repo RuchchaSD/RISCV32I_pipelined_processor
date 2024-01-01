@@ -80,11 +80,15 @@ module RISCV32I_pipelined#(
     logic wbMuxSel_out_mem_wb ;              
     logic [31:0] aluOut_out_mem_wb, writeData_out_wb; 
 
+
+    logic flush_in_if_id, branch_out_id;
+
 //If stage 
-    IF_stage IF_stage_inst(clk, rst, pcSel_out_id, jmpAddress_out_id, instruction_in_if_id, PC_in_if_id, PC4_in_if_id);
+    // IF_stage IF_stage_inst(clk, rst, pcSel_out_id, jmpAddress_out_id, instruction_in_if_id, PC_in_if_id, PC4_in_if_id);
+    IF_stage IF_stage_inst(clk, flush_if_id,branch_out_id, pcSel_out_id, jmpAddress_out_id,flush_in_if_id, instruction_in_if_id, PC_in_if_id, PC4_in_if_id);
 
 //if_id latch
-    if_id_latch IF_ID_latch_inst(clk, flush_if_id, stall_if_id,  PC_in_if_id, PC4_in_if_id, instruction_in_if_id, PC_out_if_id,
+    if_id_latch IF_ID_latch_inst(clk, flush_in_if_id, stall_if_id,  PC_in_if_id, PC4_in_if_id, instruction_in_if_id, PC_out_if_id,
      pc4_out_if_id, instruction_out_if_id);
 
 
@@ -93,7 +97,7 @@ module RISCV32I_pipelined#(
     ID_stage ID_stage_inst(clk, rst,memRead_out_id_ex, MemRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem, regWrite_out_mem_wb,wbMuxSel_out_mem_wb,
      PC_out_if_id, pc4_out_if_id, instruction_out_if_id, writeReg_out_id_ex, aluOut_out_ex_mem, writeReg_out_ex_mem, writeReg_out_mem_wb, 
      writeData_out_wb, memOut_out_mem_wb, 
-     stall_if_id, flush_if_id, pcSel_out_id, stall_id_ex, flush_id_ex, ALUSrc1_in_id_ex, 
+     stall_if_id, flush_if_id, pcSel_out_id,branch_out_id, stall_id_ex, flush_id_ex, ALUSrc1_in_id_ex, 
      ALUSrc2_in_id_ex, ALUOp_in_id_ex,
      stall_ex_mem, flush_ex_mem, memRead_in_id_ex,
      memWrite_in_id_ex, stall_mem_wb, flush_mem_wb, 

@@ -7,17 +7,24 @@ module IF_stage#(
     input logic rst,
     
     //inputs from id
-    input logic [1:0] pcSel,
-    input logic  [DATA_WIDTH-1:0] jmpAddress,
+    input logic flush_out_id,
+    input logic branch_out_id,
+    input logic [1:0] pcSel_out_id,
+    input logic  [DATA_WIDTH-1:0] jmpAddress_out_id,
     
 //outputs
     //outputs to if/id
+    output logic flush_in_if_id,
     output logic [DATA_WIDTH-1:0] instruction_in_if_id,
     output logic [DATA_WIDTH-1:0] PC_in_if_id,
     output logic [DATA_WIDTH-1:0] PC4_in_if_id
     
     //outputs to otherplaces
 );
+
+    logic [1:0] pcSel;
+    logic [DATA_WIDTH-1:0] jmpAddress;
+
         
     //initiations
     Instruction_memory instruction_memory_inst(
@@ -48,17 +55,19 @@ module IF_stage#(
         end
     end
 
-    // BranchPredictor branchPredictor_inst(
-    //     .clk(clk),
-    //     .instruction(instruction_in_if_id),
-    //     .branch(branch),//get from id
-    //     .pcSel(pcSel),
-    //     .current_pc(PC_in_if_id),
-    //     .jumpAddress(jmpAddress),
-    //     .flush(flush),
-    //     .newPCSel(newPCSel),
-    //     .newAddress(newAddress)
-    //     );
+    BranchPredictor branchPredictor_inst(
+        .clk(clk),
+        .rst(rst),
+        .instruction(instruction_in_if_id),
+        .branch(branch_out_id),//get from id
+        .pcSel(pcSel_out_id),
+        .current_pc4(PC4_in_if_id),
+        .jumpAddress(jmpAddress_out_id),
+        .flush_if(flush_out_id),
+        .flush(flush_in_if_id),
+        .newPCSel(pcSel),
+        .newAddress(jmpAddress)
+        );
 
 
 
