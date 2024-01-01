@@ -55,8 +55,8 @@ module ID_stage(
         //EX stage
         output logic stall_id_ex,
         output logic flush_id_ex,
-        output logic ALUSrc1_in_id_ex,
-        output logic ALUSrc2_in_id_ex,
+        output logic [1:0] ALUSrc1_in_id_ex,
+        output logic [1:0] ALUSrc2_in_id_ex,
         output logic [3:0] ALUOp_in_id_ex,
 
 

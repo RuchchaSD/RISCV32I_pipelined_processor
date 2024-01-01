@@ -22,10 +22,10 @@ module RISCV32I_pipelined#(
 //IF stage ports
     logic flush_if_id;
     logic [31:0] PC_out_if_id;
-    logic stall_id_ex, flush_id_ex, ALUSrc1_in_id_ex, ALUSrc2_in_id_ex,stall_ex_mem, 
+    logic stall_id_ex, flush_id_ex,stall_ex_mem, 
     flush_ex_mem, memRead_in_ex_mem, stall_mem_wb, flush_mem_wb, wbMuxSel_in_ex_mem;
 
-    logic [1:0] pcSel_out_id;
+    logic [1:0] pcSel_out_id,ALUSrc1_out_id_ex, ALUSrc2_out_id_ex, ALUSrc1_in_id_ex, ALUSrc2_in_id_ex,ALUSrc1,ALUSrc2;
     logic [31:0] jmpAddress_out_id;
     logic [31:0]  PC_in_if_id, PC4_in_if_id;
  
@@ -42,9 +42,9 @@ module RISCV32I_pipelined#(
     logic [31:0] writeData_in_id_ex, dataA_in_id_ex, dataB_in_id_ex, imm_in_id_ex;
     logic [4:0] writeReg_out_id_ex;
 
-    logic ALUSrc1_out_id_ex, ALUSrc2_out_id_ex,    regWrite_out_id_ex, wbMuxSel_out_id_ex,regWrite_in_id_ex,wbMuxSel_in_id_ex;
+    logic     regWrite_out_id_ex, wbMuxSel_out_id_ex,regWrite_in_id_ex,wbMuxSel_in_id_ex;
     logic [3:0] ALUOp_out_id_ex;
-    logic [3:0] PCSrc,ALUSrc1,ALUSrc2,ALUOp;
+    logic [3:0] PCSrc,ALUOp;
     logic [2:0] memWrite_out_id_ex,memWrite_in_id_ex,memRead_out_id_ex,func3_out_id_ex,memRead_in_id_ex;
     logic [2:0] Func3;
     logic [6:0] func7_out_id_ex;
@@ -84,7 +84,7 @@ module RISCV32I_pipelined#(
     IF_stage IF_stage_inst(clk, rst, pcSel_out_id, jmpAddress_out_id, instruction_in_if_id, PC_in_if_id, PC4_in_if_id);
 
 //if_id latch
-    if_id_latch IF_ID_latch_inst(clk, rst, stall_if_id,  PC_in_if_id, PC4_in_if_id, instruction_in_if_id, PC_out_if_id,
+    if_id_latch IF_ID_latch_inst(clk, flush_if_id, stall_if_id,  PC_in_if_id, PC4_in_if_id, instruction_in_if_id, PC_out_if_id,
      pc4_out_if_id, instruction_out_if_id);
 
 

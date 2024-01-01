@@ -90,12 +90,12 @@ module Instruction_memory#(
             imem[11] = 32'h401141B3; // MUL
 
 
-            imem[12] = 32'h000162B7; // LUI
+//            imem[12] = 32'h000162B7; // LUI
 
-            imem[13] = 32'h00019317; // AUIPC
-            imem[14] = 32'h0030046F; // JAL
+//            imem[13] = 32'h00019317; // AUIPC
+//            imem[14] = 32'h0030046F; // JAL
 
-            imem[17] = 32'h033103E7; // JALR
+            imem[17] = 32'h018103E7; // JALR
         end
     end
     
