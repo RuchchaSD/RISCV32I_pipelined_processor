@@ -39,6 +39,7 @@ module BranchPredictor(
     logic [31:0] altPC;
     logic BrORJmp;
     logic branchOutcome;
+    logic flag;
     
     typedef enum logic [1:0]{
         StronglyNotTaken = 2'b00,
@@ -55,7 +56,7 @@ module BranchPredictor(
     end 
     
     always_comb begin
-        branchOutcome = (pcSel != 2'b00 & branch ) ? 1: 0;
+        branchOutcome = (pcSel != 2'b00 & branch & flag || pcSel == 2'b00 & branch & !flag   ) ? 1: 0;
         opcode = instruction[6:0];
         imm = {instruction[31]? {20{1'b1}}:{20{1'b0}} , instruction[7], instruction[30:25],instruction[11:8],1'b0};
         branchAdd = current_pc + imm;
@@ -63,19 +64,21 @@ module BranchPredictor(
         //if the instruction is branch,jal,jalr
         BrORJmp = (opcode == 7'b1100011 || opcode == 7'b1100111 || opcode == 7'b1101111)? 1: 0;
     
-        if (BrORJmp & branchOutcome)begin
+        if (BrORJmp)begin
             if (opcode == 7'b1100011) begin //if a branch instruction
                 case(currentState) //branch 0 newpcsel = pcsel branch 1 
                     StronglyNotTaken,WeaklyNotTaken: 
                           begin 
                             newPCSel = 2'b00; //should be pc sel pc+4 -00
                             altPC = branchAdd;
+                            flag = 1'b0;
                           end
                     WeaklyTaken,StronglyTaken: 
                         begin 
                             newPCSel = 2'b01;
                             newAddress = branchAdd;
                             altPC = current_pc + 4;
+                            flag = 1'b1;
                         end
                     default: newPCSel = 2'b00;
                   endcase
