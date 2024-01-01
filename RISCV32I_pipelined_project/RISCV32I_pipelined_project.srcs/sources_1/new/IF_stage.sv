@@ -23,7 +23,7 @@ module IF_stage#(
     Instruction_memory instruction_memory_inst(
         .clk(clk),
         .rst(rst),
-        .address(PC_in_if_id),
+        .fullAddress(PC_in_if_id),
         .instruction(instruction_in_if_id)
         );
     

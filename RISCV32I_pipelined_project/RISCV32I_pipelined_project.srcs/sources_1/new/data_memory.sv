@@ -49,8 +49,8 @@ module data_memory#(
       
 initial begin
     for(int i = 0; i < 2**ADDRESS_LENGTH; i++)
-        DMEM[i] = 0;
-        end
+        DMEM[i] = i % 8;
+    end
 
 assign dataOut[31:24] = DMEM[addRW];
 assign dataOut[23:16] = DMEM[addRW+1];
