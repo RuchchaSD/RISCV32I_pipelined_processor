@@ -66,15 +66,27 @@ module Instruction_memory#(
             // imem[38] = 32'h0088046F; // JAL
             // imem[39] = 32'h0020836B; // MEMCOPY
 
-            imem[1] = 32'hFF710213; // ADDI
-            imem[2] = 32'h01712293; // SLTI
-            imem[3] = 32'h01713193; // SLTIU
-            imem[4] = 32'h01714193; // XORI
-            imem[5] = 32'h01716313; // ORI
-            imem[6] = 32'h01717193; // ANDI
-            imem[7] = 32'h00311393; // SLLI
-            imem[8] = 32'h00315413; // SRLI
-            imem[9] = 32'h40315493; // SRAI
+            // imem[1] = 32'hFF710213; // ADDI
+            // imem[2] = 32'h01712293; // SLTI
+            // imem[3] = 32'h01713193; // SLTIU
+            // imem[4] = 32'h01714193; // XORI
+            // imem[5] = 32'h01716313; // ORI
+            // imem[6] = 32'h01717193; // ANDI
+            // imem[7] = 32'h00311393; // SLLI
+            // imem[8] = 32'h00315413; // SRLI
+            // imem[9] = 32'h40315493; // SRAI
+
+            //Load Store
+            imem[1] = 32'h00810583; // LB
+            imem[2] = 32'h00811603; // LH
+            imem[3] = 32'h00812683; // LW
+            imem[4] = 32'h00814703; // LBU
+            imem[5] = 32'h00815783; // LHU
+
+            //Store
+            imem[6] = 32'h00440223; // SB
+            imem[7] = 32'h00441223; // SH
+            imem[8] = 32'h00442223; // SW
         end
     end
     

@@ -23,7 +23,7 @@ module RISCV32I_pipelined#(
     logic flush_if_id;
     logic [31:0] PC_out_if_id;
     logic stall_id_ex, flush_id_ex, ALUSrc1_in_id_ex, ALUSrc2_in_id_ex,stall_ex_mem, 
-    flush_ex_mem, memRead_in_ex_mem, memWrite_in_id_ex,stall_mem_wb, flush_mem_wb, wbMuxSel_in_ex_mem;
+    flush_ex_mem, memRead_in_ex_mem, stall_mem_wb, flush_mem_wb, wbMuxSel_in_ex_mem;
 
     logic [1:0] pcSel_out_id;
     logic [31:0] jmpAddress_out_id;
@@ -42,10 +42,10 @@ module RISCV32I_pipelined#(
     logic [31:0] writeData_in_id_ex, dataA_in_id_ex, dataB_in_id_ex, imm_in_id_ex;
     logic [4:0] writeReg_out_id_ex;
 
-    logic ALUSrc1_out_id_ex, ALUSrc2_out_id_ex,   memWrite_out_id_ex, regWrite_out_id_ex, wbMuxSel_out_id_ex;
+    logic ALUSrc1_out_id_ex, ALUSrc2_out_id_ex,    regWrite_out_id_ex, wbMuxSel_out_id_ex,regWrite_in_id_ex,wbMuxSel_in_id_ex;
     logic [3:0] ALUOp_out_id_ex;
     logic [3:0] PCSrc,ALUSrc1,ALUSrc2,ALUOp;
-    logic [2:0] memRead_out_id_ex,func3_out_id_ex;
+    logic [2:0] memWrite_out_id_ex,memWrite_in_id_ex,memRead_out_id_ex,func3_out_id_ex,memRead_in_id_ex;
     logic [2:0] Func3;
     logic [6:0] func7_out_id_ex;
     logic [6:0] Func7;
@@ -57,12 +57,12 @@ module RISCV32I_pipelined#(
 
 
 //Ex stage declerations
-    logic  regWrite_in_ex_mem, wbMuxSel_out_ex_mem,controlMRead_in_ex_mem,memToReg_in_ex_mem;
-    logic [2:0] memRead_out_ex_mem,controlMWrite_in_ex_mem;
+    logic  regWrite_in_ex_mem, wbMuxSel_out_ex_mem,memToReg_in_ex_mem;
+    logic [2:0] memRead_out_ex_mem,controlMWrite_in_ex_mem,controlMRead_in_ex_mem;
     logic [31:0] aluOut_in_ex_mem,dataMWrite_in_ex_mem;
     
-    logic controlMRead_out_ex_mem,memToReg_out_ex_mem, regWrite_out_ex_mem;
-    logic [2:0] controlMWrite_out_ex_mem;
+    logic memToReg_out_ex_mem, regWrite_out_ex_mem;
+    logic [2:0] controlMRead_out_ex_mem,controlMWrite_out_ex_mem;
     logic [4:0] writeReg_out_ex_mem,writeReg_out_mem_wb;
     logic [31:0] aluOut_out_ex_mem,dataMWrite_out_ex_mem;
     
@@ -107,7 +107,7 @@ module RISCV32I_pipelined#(
 
 //ID-EX latch
     id_ex_latch ID_EX_latch_inst(clk, rst, flush_id_ex, stall_id_ex, ALUSrc1_in_id_ex, ALUSrc2_in_id_ex, ALUOp_in_id_ex,
-    memRead_in_ex_mem, memWrite_in_id_ex, regWrite_in_id_ex, wbMuxSel_in_id_ex, PC_in_id_ex, PC4_in_id_ex, dataA_in_id_ex, dataB_in_id_ex, 
+    memRead_in_id_ex, memWrite_in_id_ex, regWrite_in_id_ex, wbMuxSel_in_id_ex, PC_in_id_ex, PC4_in_id_ex, dataA_in_id_ex, dataB_in_id_ex, 
     imm_in_id_ex, func7_in_id_ex, func3_in_id_ex, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_in_id_ex,
     ALUSrc1_out_id_ex, ALUSrc2_out_id_ex, ALUOp_out_id_ex, memRead_out_id_ex, memWrite_out_id_ex, regWrite_out_id_ex, wbMuxSel_out_id_ex,
     PC_out_id_ex, PC4_out_id_ex,dataA_out_id_ex, dataB_out_id_ex, imm_out_id_ex, func7_out_id_ex, func3_out_id_ex, readReg1_out_id_ex, readReg2_out_id_ex, 

@@ -104,7 +104,7 @@ module ID_stage(
     imm_gen immg(instruction_out_if_id, imm_in_id_ex);
     control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,
     memWrite_in_id_ex,wbMuxSel_in_id_ex,branch,
-                                                    isJalr,flush_ex_mem,flush_if_id,If_Flush,Jump);
+                                                    isJalr,flush_ex_mem,Id_Flush,flush_if_id,Jump);
     
     hazard_control_unit hcu_inst(memRead_out_id_ex, memRead_out_ex_mem, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_id_ex, writeReg_out_ex_mem, stall);
 
@@ -137,7 +137,7 @@ module ID_stage(
 
 //PC select logic
     always_comb begin
-        if(branchTaken )//isJal || isJalr || branchTaken)
+        if(branchTaken || isJalr )//isJal || isJalr || branchTaken)
             pcSel_out_id = 2'b01;
         else if(stall)
             pcSel_out_id = 2'b10;
@@ -153,11 +153,16 @@ module ID_stage(
         stall_if_id = stall;
         // flush_if_id = 0;// no use
         stall_id_ex = 0;//no use
-        flush_id_ex = stall || Id_Flush; // another signals comes here from control unit, stall || flush_id 
+        // flush_id_ex = stall || Id_Flush; // another signals comes here from control unit, stall || flush_id 
         stall_ex_mem = 0;//no use
         // flush_ex_mem = 0;//signal comes from control unit flush_ex
         stall_mem_wb = 0;//no use
         flush_mem_wb = 0;//no use
+
+        if(stall || Id_Flush)
+            flush_if_id = 1;
+        else
+            flush_if_id = 0;
     end
 
     
