@@ -23,7 +23,7 @@ module if_id_latch#(
         
     );
     
-    always_ff @(posedge clk_if_id or posedge rst_if_id) begin
+    always_ff @(posedge clk_if_id) begin
     if (rst_if_id) begin
         // Reset all outputs to default values
         pc_out_if_id <= 0;

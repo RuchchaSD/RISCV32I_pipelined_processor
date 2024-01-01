@@ -34,7 +34,7 @@ module IF_stage#(
     end
     
     //sequential
-    always_ff @(negedge clk or posedge rst) begin
+    always_ff @(posedge clk or posedge rst) begin
         if(rst) begin
             PC_in_if_id <= 0;
         end
@@ -47,4 +47,19 @@ module IF_stage#(
                 PC_in_if_id <= PC4_in_if_id; // else PC <= PC + 4
         end
     end
+
+    // BranchPredictor branchPredictor_inst(
+    //     .clk(clk),
+    //     .instruction(instruction_in_if_id),
+    //     .branch(branch),//get from id
+    //     .pcSel(pcSel),
+    //     .current_pc(PC_in_if_id),
+    //     .jumpAddress(jmpAddress),
+    //     .flush(flush),
+    //     .newPCSel(newPCSel),
+    //     .newAddress(newAddress)
+    //     );
+
+
+
 endmodule
