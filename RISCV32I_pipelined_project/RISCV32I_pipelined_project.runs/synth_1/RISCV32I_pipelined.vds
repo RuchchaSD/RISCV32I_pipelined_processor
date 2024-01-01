@@ -1,0 +1,430 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sun Dec 31 23:52:58 2023
+# Process ID: 32728
+# Current directory: D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.runs/synth_1
+# Command line: vivado.exe -log RISCV32I_pipelined.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source RISCV32I_pipelined.tcl
+# Log file: D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.runs/synth_1/RISCV32I_pipelined.vds
+# Journal file: D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.runs/synth_1\vivado.jou
+# Running On: RuchchaPc, OS: Windows, CPU Frequency: 2400 MHz, CPU Physical cores: 4, Host memory: 17015 MB
+#-----------------------------------------------------------
+source RISCV32I_pipelined.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 430.219 ; gain = 102.184
+Command: synth_design -top RISCV32I_pipelined -part xc7z010clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 25604
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [E:/aaadfd/pppj/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+INFO: [Synth 8-11241] undeclared symbol 'regWrite_out_ex_mem', assumed default net type 'wire' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EX_stage.sv:77]
+INFO: [Synth 8-11241] undeclared symbol 'regWrite_out_mem_wb', assumed default net type 'wire' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EX_stage.sv:77]
+INFO: [Synth 8-11241] undeclared symbol 'memRead_in_id_ex', assumed default net type 'wire' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:98]
+INFO: [Synth 8-11241] undeclared symbol 'regWrite_in_id_ex', assumed default net type 'wire' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:100]
+INFO: [Synth 8-11241] undeclared symbol 'wbMuxSel_in_id_ex', assumed default net type 'wire' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:100]
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:13 . Memory (MB): peak = 865.430 ; gain = 411.371
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'RISCV32I_pipelined' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:8]
+INFO: [Synth 8-6157] synthesizing module 'IF_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/IF_stage.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'Instruction_memory' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/Instruction_memory.sv:4]
+INFO: [Synth 8-6155] done synthesizing module 'Instruction_memory' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/Instruction_memory.sv:4]
+INFO: [Synth 8-6155] done synthesizing module 'IF_stage' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/IF_stage.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'if_id_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/IF-ID_latch.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'if_id_latch' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/IF-ID_latch.sv:2]
+WARNING: [Synth 8-689] width (32) of port connection 'instruction_out_if_id' does not match port width (33) of module 'if_id_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:88]
+INFO: [Synth 8-6157] synthesizing module 'ID_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:8]
+INFO: [Synth 8-6157] synthesizing module 'register_memory' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/register_memory.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'register_memory' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/register_memory.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'imm_gen' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/imm_gen.sv:2]
+WARNING: [Synth 8-151] case item 7'b0110111 is unreachable [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/imm_gen.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'imm_gen' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/imm_gen.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'control_unit' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/control_unit.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'control_unit' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/control_unit.sv:3]
+WARNING: [Synth 8-689] width (1) of port connection 'ALUSrc1' does not match port width (2) of module 'control_unit' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:105]
+WARNING: [Synth 8-689] width (1) of port connection 'ALUSrc2' does not match port width (2) of module 'control_unit' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:105]
+INFO: [Synth 8-6157] synthesizing module 'hazard_control_unit' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/hazard_control_unit.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'hazard_control_unit' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/hazard_control_unit.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'branch_data_forward' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/branch_data_forward.sv:24]
+INFO: [Synth 8-6155] done synthesizing module 'branch_data_forward' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/branch_data_forward.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'branch_comp' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/branch_comp.sv:23]
+INFO: [Synth 8-226] default block is never used [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/branch_comp.sv:53]
+INFO: [Synth 8-226] default block is never used [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/branch_comp.sv:64]
+INFO: [Synth 8-6155] done synthesizing module 'branch_comp' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/branch_comp.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'ID_stage' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:8]
+WARNING: [Synth 8-689] width (1) of port connection 'memRead_in_id_ex' does not match port width (3) of module 'ID_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:98]
+WARNING: [Synth 8-689] width (1) of port connection 'memWrite_in_id_ex' does not match port width (3) of module 'ID_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:99]
+INFO: [Synth 8-6157] synthesizing module 'id_ex_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID-EXE_latch.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'id_ex_latch' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID-EXE_latch.sv:2]
+WARNING: [Synth 8-689] width (1) of port connection 'memWrite_out_id_ex' does not match port width (3) of module 'id_ex_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:112]
+INFO: [Synth 8-6157] synthesizing module 'EX_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EX_stage.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'MUX31' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/MUX31.sv:21]
+INFO: [Synth 8-6155] done synthesizing module 'MUX31' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/MUX31.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'ALU' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:21]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:33]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:34]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:35]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:36]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:37]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:38]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:39]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:40]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:41]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:42]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:43]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:44]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:45]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:46]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:47]
+WARNING: [Synth 8-6090] variable 'ALUResult' is written by both blocking and non-blocking assignments, entire logic could be removed [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:48]
+INFO: [Synth 8-6155] done synthesizing module 'ALU' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ALU.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'ALU_data_forward' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/Alu_Data_Forward.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'ALU_data_forward' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/Alu_Data_Forward.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'EX_stage' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EX_stage.sv:1]
+WARNING: [Synth 8-689] width (4) of port connection 'ALUSrc1' does not match port width (2) of module 'EX_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:134]
+WARNING: [Synth 8-689] width (4) of port connection 'ALUSrc2' does not match port width (2) of module 'EX_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:134]
+INFO: [Synth 8-6157] synthesizing module 'ex_mem_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EXE-MEM_latch.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'ex_mem_latch' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EXE-MEM_latch.sv:2]
+WARNING: [Synth 8-689] width (1) of port connection 'controlMRead_out_ex_mem' does not match port width (3) of module 'ex_mem_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:149]
+INFO: [Synth 8-6157] synthesizing module 'MEM_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/MEM_stage.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'data_memory' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/data_memory.sv:29]
+INFO: [Synth 8-155] case statement is not full and has no default [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/data_memory.sv:63]
+INFO: [Synth 8-6155] done synthesizing module 'data_memory' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/data_memory.sv:29]
+INFO: [Synth 8-6155] done synthesizing module 'MEM_stage' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/MEM_stage.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'mem_wb_latch' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/MEM-WB_latch.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'mem_wb_latch' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/MEM-WB_latch.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'WB_stage' [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/WB_stage.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'WB_stage' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/WB_stage.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'RISCV32I_pipelined' (0#1) [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:8]
+WARNING: [Synth 8-3936] Found unconnected internal register 'microIns_reg' and it is trimmed from '32' to '30' bits. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/control_unit.sv:221]
+WARNING: [Synth 8-3936] Found unconnected internal register 'funct7_reg' and it is trimmed from '7' to '6' bits. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/control_unit.sv:81]
+WARNING: [Synth 8-3848] Net jump in module/entity control_unit does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/control_unit.sv:35]
+WARNING: [Synth 8-3848] Net pccon in module/entity control_unit does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/control_unit.sv:30]
+WARNING: [Synth 8-3848] Net Id_Flush in module/entity ID_stage does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:98]
+WARNING: [Synth 8-3848] Net writeData_in_id_ex in module/entity ID_stage does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:85]
+WARNING: [Synth 8-3848] Net func7_in_id_ex in module/entity ID_stage does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:89]
+WARNING: [Synth 8-3848] Net func3_in_id_ex in module/entity ID_stage does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/ID_stage.sv:90]
+WARNING: [Synth 8-3848] Net regWrite_out_ex_mem in module/entity EX_stage does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EX_stage.sv:77]
+WARNING: [Synth 8-3848] Net regWrite_out_mem_wb in module/entity EX_stage does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/EX_stage.sv:77]
+WARNING: [Synth 8-4767] Trying to implement RAM 'DMEM_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Invalid write to RAM. 
+	2: Unable to determine number of words or word size in RAM. 
+	3: No valid read/write found for RAM. 
+RAM "DMEM_reg" dissolved into registers
+WARNING: [Synth 8-3848] Net memRead_in_ex_mem in module/entity RISCV32I_pipelined does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:26]
+WARNING: [Synth 8-3848] Net wbMuxSel_out_ex_mem in module/entity RISCV32I_pipelined does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:60]
+WARNING: [Synth 8-3848] Net memRead_out_ex_mem in module/entity RISCV32I_pipelined does not have driver. [D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.srcs/sources_1/new/RISCV32I_pipelined.sv:61]
+WARNING: [Synth 8-7129] Port clk in module WB_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rst in module WB_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[31] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[30] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[29] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[28] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[27] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[26] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[25] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[24] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[23] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[22] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[21] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[20] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[19] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[18] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[17] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[16] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[15] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[14] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[13] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[12] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[11] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[10] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[9] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[8] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[7] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ALUresult[6] in module data_memory is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[6] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[5] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[4] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[3] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[2] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[1] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func7[0] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func3[2] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func3[1] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port Func3[0] in module EX_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[31] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[29] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[28] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[27] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[26] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[25] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[24] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[23] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[22] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[21] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[20] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[19] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[18] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[17] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[16] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[15] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[11] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[10] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[9] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[8] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port instruction[7] in module control_unit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[31] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[30] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[29] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[28] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[27] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[26] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[25] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[24] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[23] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[22] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[21] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[20] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[19] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[18] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[17] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[16] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[15] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[14] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[13] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[12] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[11] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[10] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[9] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[8] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[7] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[6] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[5] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[4] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[3] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[2] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[1] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port writeData_in_id_ex[0] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[6] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[5] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[4] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[3] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[2] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[1] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port func7_in_id_ex[0] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PC_out_if_id[31] in module ID_stage is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PC_out_if_id[30] in module ID_stage is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:18 . Memory (MB): peak = 978.398 ; gain = 524.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:20 . Memory (MB): peak = 978.398 ; gain = 524.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z010clg400-1
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:20 . Memory (MB): peak = 978.398 ; gain = 524.340
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:29 . Memory (MB): peak = 1119.484 ; gain = 665.426
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 3     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	               33 Bit    Registers := 1     
+	               32 Bit    Registers := 53    
+	                8 Bit    Registers := 64    
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 5     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 5     
+	                1 Bit    Registers := 8     
++---Multipliers : 
+	              32x32  Multipliers := 1     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 4     
+	  10 Input   32 Bit        Muxes := 1     
+	 257 Input   32 Bit        Muxes := 1     
+	   4 Input   32 Bit        Muxes := 2     
+	   3 Input   32 Bit        Muxes := 4     
+	   2 Input   24 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	  11 Input    8 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 416   
+	   3 Input    8 Bit        Muxes := 26    
+	   3 Input    2 Bit        Muxes := 7     
+	   3 Input    1 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 40    
+	   7 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 80 (col length:40)
+BRAMs: 120 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP ALUResult0, operation Mode is: A*B.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: Generating DSP ALUResult0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: Generating DSP ALUResult0, operation Mode is: A*B.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: Generating DSP ALUResult0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+DSP Report: operator ALUResult0 is absorbed into DSP ALUResult0.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:42 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|ALU         | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|ALU         | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|ALU         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|ALU         | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:42 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:42 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++-+-----+------+
+| |Cell |Count |
++-+-----+------+
++-+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |     0|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 265 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+Synthesis Optimization Complete : Time (s): cpu = 00:00:17 ; elapsed = 00:00:54 . Memory (MB): peak = 1171.793 ; gain = 717.734
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1171.793 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1263.273 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: ab379aab
+INFO: [Common 17-83] Releasing license: Synthesis
+62 Infos, 141 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:57 . Memory (MB): peak = 1263.273 ; gain = 833.055
+INFO: [Common 17-1381] The checkpoint 'D:/work/Repos/Digital_System_design/RiscV32I_pipelined_processor/RISCV32I_pipelined_processor/RISCV32I_pipelined_project/RISCV32I_pipelined_project.runs/synth_1/RISCV32I_pipelined.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file RISCV32I_pipelined_utilization_synth.rpt -pb RISCV32I_pipelined_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Dec 31 23:54:14 2023...
