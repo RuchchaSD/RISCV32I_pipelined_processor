@@ -8,7 +8,8 @@ module hazard_control_unit#(
         output logic stall );
 
     // always @(memRead_out_id_ex, memRead_out_ex_mem, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_id_ex, writeReg_out_ex_mem)
-	always_comb
+	 always_comb
+//	always_ff @(negedge clk)
     begin
 	  if((memRead_out_id_ex != 0||memRead_out_ex_mem != 0) && 
       ((writeReg_out_id_ex ==readReg1_in_id_ex)||(writeReg_out_id_ex ==readReg2_in_id_ex)||(writeReg_out_ex_mem ==readReg1_in_id_ex)||(writeReg_out_ex_mem ==readReg2_in_id_ex)))

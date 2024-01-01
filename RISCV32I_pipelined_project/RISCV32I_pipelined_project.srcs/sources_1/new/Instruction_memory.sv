@@ -77,16 +77,25 @@ module Instruction_memory#(
             // imem[9] = 32'h40315493; // SRAI
 
             //Load Store
-            imem[1] = 32'h00810583; // LB
-            imem[2] = 32'h00811603; // LH
-            imem[3] = 32'h00812683; // LW
-            imem[4] = 32'h00814703; // LBU
-            imem[5] = 32'h00815783; // LHU
+            imem[1] = 32'h001101B3; // ADD
+            imem[2] = 32'h401101B3; // SUB
+            imem[3] = 32'h001111B3; // SLL
+            imem[4] = 32'h001121B3; // SLT
+            imem[5] = 32'h001131B3; // SLTU
+            imem[6] = 32'h001141B3; // XOR
+            imem[7] = 32'h001151B3; // SRL
+            imem[8] = 32'h401151B3; // SRA
+            imem[9] = 32'h001161B3; // OR
+            imem[10] = 32'h001171B3; // AND
+            imem[11] = 32'h401141B3; // MUL
 
-            //Store
-            imem[6] = 32'h00440223; // SB
-            imem[7] = 32'h00441223; // SH
-            imem[8] = 32'h00442223; // SW
+
+            imem[12] = 32'h000162B7; // LUI
+
+            imem[13] = 32'h00019317; // AUIPC
+            imem[14] = 32'h0030046F; // JAL
+
+            imem[17] = 32'h033103E7; // JALR
         end
     end
     

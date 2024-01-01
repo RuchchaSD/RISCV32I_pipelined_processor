@@ -58,7 +58,7 @@ module RISCV32I_pipelined#(
 
 //Ex stage declerations
     logic  regWrite_in_ex_mem, wbMuxSel_out_ex_mem,memToReg_in_ex_mem;
-    logic [2:0] memRead_out_ex_mem,controlMWrite_in_ex_mem,controlMRead_in_ex_mem;
+    logic [2:0] MemRead_out_ex_mem,controlMWrite_in_ex_mem,controlMRead_in_ex_mem;
     logic [31:0] aluOut_in_ex_mem,dataMWrite_in_ex_mem;
     
     logic memToReg_out_ex_mem, regWrite_out_ex_mem;
@@ -68,7 +68,7 @@ module RISCV32I_pipelined#(
     
 //MemStage declerations
     logic  regWrite_in_mem_wb;
-    logic [2 : 0] MemRead_out_ex_mem, MemWrite_out_ex_mem;  
+    logic [2 : 0] MemWrite_out_ex_mem;  
     logic [4:0] writeReg_in_mem_wb;                                                                                                               
     logic [31:0] ExMem_Addr,WriteDataMem_out_ex_mem;                                                                                                   
     logic [31:0] memOut_in_mem_wb;      
@@ -90,7 +90,7 @@ module RISCV32I_pipelined#(
 
 
 //ID stage
-    ID_stage ID_stage_inst(clk, rst,memRead_out_id_ex, memRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem, regWrite_out_mem_wb,wbMuxSel_out_mem_wb,
+    ID_stage ID_stage_inst(clk, rst,memRead_out_id_ex, MemRead_out_ex_mem, regWrite_out_ex_mem, wbMuxSel_out_ex_mem, regWrite_out_mem_wb,wbMuxSel_out_mem_wb,
      PC_out_if_id, pc4_out_if_id, instruction_out_if_id, writeReg_out_id_ex, aluOut_out_ex_mem, writeReg_out_ex_mem, writeReg_out_mem_wb, 
      writeData_out_wb, memOut_out_mem_wb, 
      stall_if_id, flush_if_id, pcSel_out_id, stall_id_ex, flush_id_ex, ALUSrc1_in_id_ex, 

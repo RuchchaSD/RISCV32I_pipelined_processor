@@ -124,20 +124,19 @@ module ID_stage(
         jalrAdd = imm_in_id_ex + dataA_in_id_ex;
         brAdd = PC_out_if_id + imm_in_id_ex;
         
-        //logic
+        //logic for calculating jump address
         
         if(isJalr)
             jmpAddress_out_id = jalrAdd;
         else 
-            // jmpAddress_out_id = brAdd; //uncomment when implementing branch
-            jmpAddress_out_id = 0;
+            jmpAddress_out_id = brAdd;// for jal and branch
     end
 
 
 
 //PC select logic
     always_comb begin
-        if(branchTaken || isJalr )//isJal || isJalr || branchTaken)
+        if(branchTaken || Jump )//isJal || isJalr || branchTaken)
             pcSel_out_id = 2'b01;
         else if(stall)
             pcSel_out_id = 2'b10;
@@ -160,10 +159,12 @@ module ID_stage(
         flush_mem_wb = 0;//no use
 
         if(stall || Id_Flush)
-            flush_if_id = 1;
+            flush_id_ex = 1;
         else
-            flush_if_id = 0;
+            flush_id_ex = 0;
     end
+
+
 
     
     
