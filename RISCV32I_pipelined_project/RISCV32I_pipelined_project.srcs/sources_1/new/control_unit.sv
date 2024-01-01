@@ -18,13 +18,12 @@ module control_unit(
     output logic regWrite, 
     output logic [2:0] memWrite,
     output logic wbMuxsel,
-    output logic branch //0:beq, 1:blt
-    // output logic [1:0] pcSel, //0:pc+4, 1:aluOut
-    // output logic [1:0] aSel, //0:rs1, 1:pc
-    // output logic [1:0] bSel, //0:rs2, 1:imm
-    // output logic [1:0] wSel, //0:aluOut, 1:memOut, 2: PC+4
-    // output logic [2:0] extSel, //0:sign extend, 1:zero extend, 2:shift left 1, 3:shift left 12
-    // output logic increment, counterEn, memWsel, dataregWrite
+    output logic branch, 
+    output logic isJalr,
+    output logic EX_Flush,
+    output logic Id_Flush,
+    output logic If_Flush,
+    output logic Jump
     );
     
     logic [6:0] opcode;
@@ -47,16 +46,65 @@ module control_unit(
             Control[i] = 32'b00000000000000000000000001110000;
         end
         //Rtype
-        Control[1] = 32'b0010000000000001000000000; //ADD
-        Control[2] = 32'b0010000000000011000000000; //SUB
-        Control[3] = 32'b0010000000000010000000000; //SLL
-        Control[5] = 32'b0010000000000101000000000; //SLT
-        Control[7] = 32'b0010000000000010100000000; //SLTU
-        Control[9] = 32'b0010000000000001100000000; //XOR
-        Control[11] = 32'b0010000000000100000000000; //SRL
-        Control[12] = 32'b0010000000000110000000000; //SRA
-        Control[13] = 32'b0010000000000000100000000; //OR
-        Control[15] = 32'b0010000000000111100000000; //AND
+        Control[1] = 32'b00000000010000000000000100000000; //ADD
+        Control[2] = 32'b00000000010000000000001000000000; //SUB
+        Control[3] = 32'b00000000010000000000001100000000; //SLL
+        Control[5] = 32'b00000000010000000000010000000000; //SLT
+        Control[7] = 32'b00000000010000000000010100000000; //SLTU
+        Control[9] = 32'b00000000010000000000011000000000; //XOR
+        Control[11] = 32'b00000000010000000000100000000000; //SRL
+        Control[12] = 32'b00000000010000000000011100000000; //SRA
+        Control[13] = 32'b00000000010000000000100100000000; //OR
+        Control[15] = 32'b00000000010000000000101000000000; //AND
+        Control[10] = 32'b00111100000000; //MUL
+
+        //LUI
+        Control[17] = 32'b00000000010000000110000100000000; //LUI
+        //AUIPC
+        Control[129] = 32'b00000000010000000101000100000000; //AUIPC
+
+        //JALR
+        Control[33] = 32'b01100010010000001001000100000000; //JALR
+        //Itype Arith
+        Control[49] = 32'b00000000010000000100000100000000; //ADDI
+        Control[53] = 32'b00000000010000000100010000000000; //SLTI
+        Control[55] = 32'b00000000010000000100010100000000; //SLTIU
+        Control[57] = 32'b00000000010000000100011000000000; //XORI
+        Control[61] = 32'b00000000010000000100100100000000; //ORI
+        Control[63] = 32'b00000000010000000100101000000000; //ANDI
+        Control[51] = 32'b00000000010000000100001100000000; //SLLI
+        Control[59] = 32'b00000000010000000100100000000000; //SRLI
+        Control[60] = 32'b00000000010000000100011100000000; //SRAI
+
+        //I type load
+        Control[65] = 32'b00000000110000000100000100000000; //LB
+        Control[67] = 32'b00000000110000010100000100000000; //LH
+        Control[69] = 32'b00000000110000100100000100000000; //LW
+        Control[73] = 32'b00000000110001000100000100000000; //LBU
+        Control[75] = 32'b00000000110001010100000100000000; //LHU
+
+        //Stype
+        Control[81] = 32'b00000000000110000100000100000000; //SB
+        Control[83] = 32'b00000000000100000100000100000000; //SH
+        Control[85] = 32'b00000000000010000100000100000000; //SW
+
+        //sb type
+        Control[97] = 32'b01000101000000000100000000; //BEQ
+        Control[99] = 32'b01000101000000000100000000; //BNE
+        Control[105] = 32'b01000101000000000100000000; //BLT
+        Control[107] = 32'b01000101000000000100000000; //BGE
+        Control[109] = 32'b01000101000000000100000000; //BLTU
+        Control[111] = 32'b01000101000000000100000000; //BGEU
+
+        //Jtype
+        Control[113] = 32'b10100000010000001001000100000000; //JAL
+
+        //MEMCOPY 
+        Control[145] = 32'b11000110010010; //MEMCOPY
+        Control[147] = 32'b11000110010100;
+        Control[149] = 32'b11000110010010;
+        Control[150] = 32'b00000000000000;
+
     end
 
 
@@ -78,6 +126,12 @@ module control_unit(
         regWrite = microIns[22];
         wbMuxsel = microIns[23];
         branch = microIns[24];
+        isJalr = microIns[25];
+        EX_Flush = microIns[26];
+        Id_Flush = microIns[27];
+        If_Flush = microIns[28];
+        Jump = microIns[29];
+        pccon = microIns[31:30];
 
 
 
@@ -178,31 +232,39 @@ module control_unit(
                 insmicroOp = -1;
         endcase
     
-    //get microinstruction from control memory
-        // if(pccon == 2'b11)
+// //get microinstruction from control memory
+    //     // if(pccon == 2'b11)
             
-        //     microOp = nextOp;
-        // else
-        //     microOp = insmicroOp + 1 ;
+    //     //     microOp = nextOp;
+    //     // else
+    //     //     microOp = insmicroOp + 1 ;
 
-        // if(rst)
-        //     microOp = 0;
-
-    always_ff @(posedge clk) begin
-        if(rst) begin
-            microOp = 0;
-        end
-        else begin
-            if(pccon == 2'b11)
+    //     // if(rst)
+    //     //     microOp = 0;
+//change this for multi cycle instructios
+    // always_ff @(negedge clk) begin
+    //     if(rst) begin
+    //         microOp = 0;
+    //     end
+    //     else begin
+    //         if(pccon == 2'b11)
             
-                microOp <= nextOp +1;
-            else
-                microOp <= insmicroOp + 1 ;
-        end
-    end 
+    //             microOp <= nextOp +1;
+    //         else
+    //             microOp <= insmicroOp + 1 ;
+    //     end
+    // end
+
+//combinational microOp assignment
+    assign microOp = pccon == 2'b11 ? nextOp +1 : insmicroOp + 1;
 
     always_comb begin
-        microIns = Control[microOp] ;
+        if(rst)begin
+            microIns = Control[0];
+        end
+        else begin
+            microIns = Control[microOp];
+        end
     end
 
 //change nextOp

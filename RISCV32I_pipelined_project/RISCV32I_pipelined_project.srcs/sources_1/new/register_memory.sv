@@ -17,6 +17,13 @@ module register_memory#(
 
     logic [DATA_WIDTH-1:0] regs [REGISTER_WIDTH-1:0];
 
+    // initial begin
+    //     for (int i = 0; i < REGISTER_WIDTH; i++) 
+    //     begin
+    //         regs[i] = 0;
+    //     end
+    // end
+
     always @(negedge clk) 
     begin
         if (rst) 
@@ -28,6 +35,7 @@ module register_memory#(
             regs[0] <= 1;
             regs[1] <= 2;
             regs[2] <= 3;
+            // regs[3] <= 4;
         end 
         else if (regWrite) 
             begin

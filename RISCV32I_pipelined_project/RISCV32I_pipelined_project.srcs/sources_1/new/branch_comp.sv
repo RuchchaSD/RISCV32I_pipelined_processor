@@ -25,8 +25,8 @@ module branch_comp(
     input logic [2:0] Func3,
     input logic [1:0] brach_mux1,
     input logic [1:0] brach_mux2,
-    input logic [31:0] ALUSrc1_in_id_ex,
-    input logic [31:0] ALUSrc2_in_id_ex,
+    input logic [31:0] dataA_in_id_ex,
+    input logic [31:0] dataB_in_id_ex,
     input logic [31:0] aluOut_out_ex_mem,
     input logic [31:0] memOut_out_mem_wb,
     output logic branchTaken
@@ -51,7 +51,7 @@ module branch_comp(
     always_comb
         begin
         case(brach_mux1)
-            2'b00: dataA = ALUSrc1_in_id_ex;
+            2'b00: dataA = dataA_in_id_ex;
             2'b01: dataA = aluOut_out_ex_mem;
             2'b10: dataA = memOut_out_mem_wb;
             2'b11: dataA = 0;
@@ -62,7 +62,7 @@ module branch_comp(
     always_comb
         begin
         case(brach_mux2)
-            2'b00: dataB = ALUSrc2_in_id_ex;
+            2'b00: dataB = dataB_in_id_ex;
             2'b01: dataB = aluOut_out_ex_mem;
             2'b10: dataB = memOut_out_mem_wb;
             2'b11: dataB = 0;
