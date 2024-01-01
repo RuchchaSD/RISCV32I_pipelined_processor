@@ -23,7 +23,7 @@ module ID_stage(
 
 
         //WB stage
-        input logic regWrite_out_mem_wb,
+        input logic regWrite_out_mem_wb,wbMuxSel_out_mem_wb,
 
     //input data
         //IF stage
@@ -50,7 +50,7 @@ module ID_stage(
         //IF stage
         output logic stall_if_id,
         output logic flush_if_id,
-        output logic pcSel_out_id,
+        output logic [1:0] pcSel_out_id,
 
         //EX stage
         output logic stall_id_ex,
@@ -95,14 +95,23 @@ module ID_stage(
 );
     
     logic [31:0] jalrAdd,brAdd;
-    logic beq, blt,isJalr,branch;
+    logic beq, blt,isJalr,branch,stall,branchTaken,Id_Flush,If_Flush,Jump;
+    logic [1:0] brach_mux1, brach_mux2;
     
-    register_memory reg_mem(clk, rst, regWrite_in_id_ex, writeReg_in_id_ex, readReg1_in_id_ex,readReg2_in_id_ex,writeData_in_id_ex,dataA_in_id_ex,dataB_in_id_ex);
-    branch_comp bc(branch, dataA_in_id_ex, dataB_in_id_ex, beq, blt);
+    register_memory reg_mem(clk, rst, regWrite_out_mem_wb, writeReg_out_mem_wb, readReg1_in_id_ex,readReg2_in_id_ex,
+      writeData_out_wb,dataA_in_id_ex,dataB_in_id_ex);
+    
     imm_gen immg(instruction_out_if_id, imm_in_id_ex);
-    control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,memWrite_in_id_ex,wbMuxSel_in_id_ex,branch);
+    control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,
+    memWrite_in_id_ex,wbMuxSel_in_id_ex,branch,
+                                                    isJalr,flush_ex_mem,flush_if_id,If_Flush,Jump);
     
-//    hazard_control_unit hcu_inst();
+    hazard_control_unit hcu_inst(memRead_out_id_ex, memRead_out_ex_mem, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_id_ex, writeReg_out_ex_mem, stall);
+
+    branch_data_forward bdf_inst(regWrite_out_ex_mem, wbMuxSel_out_ex_mem, regWrite_out_mem_wb, wbMuxSel_out_mem_wb, 
+    readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_ex_mem, writeReg_out_mem_wb, brach_mux1, brach_mux2);
+    branch_comp bc(branch, func3_in_id_ex, brach_mux1, brach_mux2, dataA_in_id_ex, dataB_in_id_ex, aluOut_out_ex_mem, memOut_out_mem_wb, branchTaken);
+
 // branch data forward 
     
     
@@ -120,8 +129,38 @@ module ID_stage(
         if(isJalr)
             jmpAddress_out_id = jalrAdd;
         else 
-            jmpAddress_out_id = brAdd;
+            // jmpAddress_out_id = brAdd; //uncomment when implementing branch
+            jmpAddress_out_id = 0;
     end
+
+
+
+//PC select logic
+    always_comb begin
+        if(branchTaken )//isJal || isJalr || branchTaken)
+            pcSel_out_id = 2'b01;
+        else if(stall)
+            pcSel_out_id = 2'b10;
+        else
+            pcSel_out_id = 2'b00;
+    end
+
+
+    // assign pcSel_out_id = 0; // change when implementing branch and when stall is implemented
+
+    //stall and flush flush logic change after implementing units
+    always_comb begin
+        stall_if_id = stall;
+        // flush_if_id = 0;// no use
+        stall_id_ex = 0;//no use
+        flush_id_ex = stall || Id_Flush; // another signals comes here from control unit, stall || flush_id 
+        stall_ex_mem = 0;//no use
+        // flush_ex_mem = 0;//signal comes from control unit flush_ex
+        stall_mem_wb = 0;//no use
+        flush_mem_wb = 0;//no use
+    end
+
+    
     
     
     

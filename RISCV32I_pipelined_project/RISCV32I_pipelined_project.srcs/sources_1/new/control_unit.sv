@@ -18,13 +18,12 @@ module control_unit(
     output logic regWrite, 
     output logic [2:0] memWrite,
     output logic wbMuxsel,
-    output logic branch //0:beq, 1:blt
-    // output logic [1:0] pcSel, //0:pc+4, 1:aluOut
-    // output logic [1:0] aSel, //0:rs1, 1:pc
-    // output logic [1:0] bSel, //0:rs2, 1:imm
-    // output logic [1:0] wSel, //0:aluOut, 1:memOut, 2: PC+4
-    // output logic [2:0] extSel, //0:sign extend, 1:zero extend, 2:shift left 1, 3:shift left 12
-    // output logic increment, counterEn, memWsel, dataregWrite
+    output logic branch, 
+    output logic isJalr,
+    output logic EX_Flush,
+    output logic Id_Flush,
+    output logic If_Flush,
+    output logic Jump
     );
     
     logic [6:0] opcode;
@@ -47,16 +46,28 @@ module control_unit(
             Control[i] = 32'b00000000000000000000000001110000;
         end
         //Rtype
-        Control[1] = 32'b0010000000000001000000000; //ADD
-        Control[2] = 32'b0010000000000011000000000; //SUB
-        Control[3] = 32'b0010000000000010000000000; //SLL
-        Control[5] = 32'b0010000000000101000000000; //SLT
-        Control[7] = 32'b0010000000000010100000000; //SLTU
-        Control[9] = 32'b0010000000000001100000000; //XOR
-        Control[11] = 32'b0010000000000100000000000; //SRL
-        Control[12] = 32'b0010000000000110000000000; //SRA
-        Control[13] = 32'b0010000000000000100000000; //OR
-        Control[15] = 32'b0010000000000111100000000; //AND
+        Control[1] = 32'b000000010000000000000100000000; //ADD
+        Control[2] = 32'b000000010000000000001000000000; //SUB
+        Control[3] = 32'b000000010000000000001100000000; //SLL
+        Control[5] = 32'b000000010000000000010000000000; //SLT
+        Control[7] = 32'b000000010000000000010100000000; //SLTU
+        Control[9] = 32'b000000010000000000011000000000; //XOR
+        Control[11] = 32'b000000010000000000100000000000; //SRL
+        Control[12] = 32'b000000010000000000011100000000; //SRA
+        Control[13] = 32'b000000010000000000100100000000; //OR
+        Control[15] = 32'b000000010000000000101000000000; //AND
+
+        //Itype Arith
+        Control[49] = 32'b00000001000100000100000000; //ADDI
+        Control[53] = 32'b00000001000100010000000000; //SLTI
+        Control[55] = 32'b00000001000100010100000000; //SLTIU
+        Control[57] = 32'b00000001000100011000000000; //XORI
+        Control[61] = 32'b00000001000100100100000000; //ORI
+        Control[63] = 32'b00000001000100101000000000; //ANDI
+        Control[51] = 32'b00000001000100001100000000; //SLLI
+        Control[59] = 32'b00000001000100100000000000; //SRLI
+        Control[60] = 32'b00000001000100011100000000; //SRAI
+
     end
 
 
@@ -78,6 +89,11 @@ module control_unit(
         regWrite = microIns[22];
         wbMuxsel = microIns[23];
         branch = microIns[24];
+        isJalr = microIns[25];
+        EX_Flush = microIns[26];
+        Id_Flush = microIns[27];
+        If_Flush = microIns[28];
+        Jump = microIns[29];
 
 
 

@@ -22,7 +22,7 @@ module EX_stage#(
     );
     
     logic [1:0] ExMUX3_sel,ExMUX4_sel;
-    logic [3:0] alu_cc;
+    // logic [3:0] alu_cc;
     logic [width - 1:0]  TempALU_Opearand_1 ,TempALU_Opearand_2,ALU_Operand_1,ALU_Operand_2;
 
 
@@ -74,7 +74,7 @@ module EX_stage#(
 //        .ALU_control(alu_cc) //ouput signal to alu
 //   );
    
-   ALU_data_forward(regWrite_out_ex_mem,regWrite_out_mem_wb,writeReg_out_ex_mem,writeReg_out_mem_wb,
+   ALU_data_forward ALU_data_forward_inst(regWrite_out_ex_mem,regWrite_out_mem_wb,writeReg_out_ex_mem,writeReg_out_mem_wb,
                     readReg1_out_id_ex,readReg2_out_id_ex,
                     ExMUX3_sel,ExMUX4_sel);
 
