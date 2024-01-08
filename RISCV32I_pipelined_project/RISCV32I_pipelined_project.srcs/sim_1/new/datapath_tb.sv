@@ -8,11 +8,17 @@ module datapath_tb;
     // Inputs
     reg clk;
     reg rst;
+    logic [31:0] PC_in_if_id;
+    logic [31:0] memOut_out_mem_wb;
+    logic [31:0] aluOut_in_ex_mem;
 
     // Instantiate the Unit Under Test (UUT)
     RISCV32I_pipelined #(.ADDRESS_LENGTH(ADDRESS_LENGTH)) uut (
         .clk(clk),
-        .rst(rst)
+        .rst(rst),
+        .PC_in_if_id(PC_in_if_id),
+        .memOut_out_mem_wb(memOut_out_mem_wb),
+        .aluOut_in_ex_mem(aluOut_in_ex_mem)
     );
 
     // Clock generation

@@ -23,7 +23,8 @@ module ID_stage(
 
 
         //WB stage
-        input logic regWrite_out_mem_wb,wbMuxSel_out_mem_wb,
+        input logic regWrite_out_mem_wb,
+        input logic wbMuxSel_out_mem_wb,
 
     //input data
         //IF stage
@@ -50,7 +51,8 @@ module ID_stage(
         //IF stage
         output logic stall_if_id,
         output logic flush_if_id,
-        output logic [1:0] pcSel_out_id,branch,
+        output logic branch,
+        output logic [1:0] pcSel_out_id,
 
         //EX stage
         output logic stall_id_ex,
@@ -104,7 +106,7 @@ module ID_stage(
     imm_gen immg(instruction_out_if_id, imm_in_id_ex);
     control_unit cu_inst(clk,rst,instruction_out_if_id,ALUOp_in_id_ex,ALUSrc1_in_id_ex,ALUSrc2_in_id_ex, memRead_in_id_ex,regWrite_in_id_ex,
     memWrite_in_id_ex,wbMuxSel_in_id_ex,branch,
-                                                    isJalr,flush_ex_mem,Id_Flush,flush_if_id,Jump);
+                                                    isJalr,flush_ex_mem,Id_Flush,flush_if_id,Jump,func3_in_id_ex);
     
     hazard_control_unit hcu_inst(memRead_out_id_ex, memRead_out_ex_mem, readReg1_in_id_ex, readReg2_in_id_ex, writeReg_out_id_ex, writeReg_out_ex_mem, stall);
 
@@ -138,8 +140,8 @@ module ID_stage(
     always_comb begin
         if(branchTaken || Jump )//isJal || isJalr || branchTaken)
             pcSel_out_id = 2'b01;
-        else if(stall)
-            pcSel_out_id = 2'b10;
+        // else if(stall) //commented for checking branch
+        //     pcSel_out_id = 2'b10;
         else
             pcSel_out_id = 2'b00;
     end

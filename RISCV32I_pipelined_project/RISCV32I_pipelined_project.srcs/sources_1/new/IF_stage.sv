@@ -55,7 +55,7 @@ module IF_stage#(
         end
     end
 
-    BranchPredictor branchPredictor_inst(
+    branch_predictor branch_predictor_inst(
         .clk(clk),
         .rst(rst),
         .instruction(instruction_in_if_id),
@@ -63,7 +63,7 @@ module IF_stage#(
         .pcSel(pcSel_out_id),
         .current_pc4(PC4_in_if_id),
         .jumpAddress(jmpAddress_out_id),
-        .flush_if(flush_out_id),
+        .flush_out_id(flush_out_id),
         .flush(flush_in_if_id),
         .newPCSel(pcSel),
         .newAddress(jmpAddress)

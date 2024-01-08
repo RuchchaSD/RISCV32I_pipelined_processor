@@ -35,7 +35,7 @@ module register_memory#(
             regs[0] <= 1;
             regs[1] <= 2;
             regs[2] <= 3;
-            // regs[3] <= 4;
+            regs[3] <= 3;
         end 
         else if (regWrite) 
             begin

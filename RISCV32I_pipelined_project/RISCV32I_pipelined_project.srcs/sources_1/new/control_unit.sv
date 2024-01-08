@@ -23,12 +23,13 @@ module control_unit(
     output logic EX_Flush,
     output logic Id_Flush,
     output logic If_Flush,
-    output logic Jump
+    output logic Jump,
+    logic [2:0] funct3
     );
     
     logic [6:0] opcode;
     logic [1:0] pccon;
-    logic [2:0] funct3,extOp;
+    logic [2:0] extOp;
     logic [6:0] funct7;
     logic [2:0] memWriteCon;
     // logic [3:0] aluOp;
@@ -45,7 +46,6 @@ module control_unit(
         for (int i=0; i < 256; ++i) begin
             Control[i] = 32'b00000000000000000000000001110000;
         end
-       //Rtype
         Control[1] = 32'b00000000010000000000000100000000; //ADD
         Control[2] = 32'b00000000010000000000001000000000; //SUB
         Control[3] = 32'b00000000010000000000001100000000; //SLL
@@ -89,12 +89,12 @@ module control_unit(
         Control[85] = 32'b00000000000010000100000100000000; //SW
 
         //sb type
-        Control[97] = 32'b01000101000000000100000000; //BEQ
-        Control[99] = 32'b01000101000000000100000000; //BNE
-        Control[105] = 32'b01000101000000000100000000; //BLT
-        Control[107] = 32'b01000101000000000100000000; //BGE
-        Control[109] = 32'b01000101000000000100000000; //BLTU
-        Control[111] = 32'b01000101000000000100000000; //BGEU
+        Control[97] = 32'b01000101000000000000000100000000; //BEQ
+        Control[99] = 32'b01000101000000000000000100000000; //BNE
+        Control[105] = 32'b01000101000000000000000100000000; //BLT
+        Control[107] = 32'b01000101000000000000000100000000; //BGE
+        Control[109] = 32'b01000101000000000000000100000000; //BLTU
+        Control[111] = 32'b01000101000000000000000100000000; //BGEU
 
         //Jtype
         Control[113] = 32'b10110000010000001001000100000000; //JAL
@@ -104,6 +104,7 @@ module control_unit(
         Control[147] = 32'b11000110010100;
         Control[149] = 32'b11000110010010;
         Control[150] = 32'b00000000000000;
+
 
     end
 
